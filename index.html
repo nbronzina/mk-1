@@ -19,19 +19,18 @@
             position: relative;
         }
 
-        /* Film grain texture overlay */
+        /* Film grain texture overlay - FIJO */
         body::before {
             content: '';
             position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             opacity: 0.25;
-            z-index: 9999;
+            z-index: 1;
             pointer-events: none;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="6" seed="2" /></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="1"/></svg>');
-            animation: grain 6s steps(8) infinite;
         }
 
         /* Subtle vignette */
@@ -43,21 +42,8 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 9998;
+            z-index: 1;
             box-shadow: inset 0 0 200px rgba(0,0,0,0.12);
-        }
-
-        @keyframes grain {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            10% { transform: translate(-5%, -10%) rotate(1deg); }
-            20% { transform: translate(-15%, 5%) rotate(-1deg); }
-            30% { transform: translate(7%, -25%) rotate(2deg); }
-            40% { transform: translate(-5%, 25%) rotate(-2deg); }
-            50% { transform: translate(-15%, 10%) rotate(1deg); }
-            60% { transform: translate(15%, 0%) rotate(-1deg); }
-            70% { transform: translate(0%, 15%) rotate(1deg); }
-            80% { transform: translate(3%, 35%) rotate(-1deg); }
-            90% { transform: translate(-10%, 10%) rotate(0deg); }
         }
 
         .header {
@@ -132,7 +118,7 @@
             overflow: hidden;
         }
 
-        /* Grain texture on modules */
+        /* Grain texture on modules - FIJO */
         .module::after {
             content: '';
             position: absolute;
@@ -612,7 +598,7 @@
     <div class="container">
         <div class="hero">
             <h1>for making music with you</h1>
-            <p>press any key to start</p>
+            <p>press enter to start</p>
         </div>
 
         <div class="status-bar">
@@ -625,7 +611,7 @@
         <!-- Main Grid - Drums, Keys, Loop prominent -->
         <div class="workspace">
             <!-- Drums - main instrument -->
-            <div class="module module-half">
+            <div class="module module-twothird">
                 <div class="module-header">
                     <div class="module-title">drums</div>
                 </div>
@@ -673,6 +659,7 @@
                 <button class="btn-secondary" id="recordBtn">rec</button>
                 <button class="btn-secondary" id="playLoopBtn" style="margin-top: 0.5rem;">play</button>
                 <button class="btn-secondary" id="clearLoopBtn" style="margin-top: 0.5rem;">clear</button>
+                <button class="btn" id="downloadBtn" style="margin-top: 0.5rem; display: none;">download</button>
                 <div class="control-group" style="margin-top: 1.5rem;">
                     <div class="control-label">
                         <span>volume</span>
@@ -752,32 +739,30 @@
 
         <!-- Effects + Tempo + Pattern in one row -->
         <div class="workspace">
-            <div class="module module-half">
+            <div class="module module-third">
                 <div class="module-header">
                     <div class="module-title">fx</div>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
-                    <div class="control-group">
-                        <div class="control-label">
-                            <span>reverb</span>
-                            <span class="control-value" id="reverbVal">40%</span>
-                        </div>
-                        <input type="range" id="reverb" min="0" max="100" value="40">
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>reverb</span>
+                        <span class="control-value" id="reverbVal">40%</span>
                     </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <span>delay</span>
-                            <span class="control-value" id="delayVal">20%</span>
-                        </div>
-                        <input type="range" id="delay" min="0" max="100" value="20">
+                    <input type="range" id="reverb" min="0" max="100" value="40">
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>delay</span>
+                        <span class="control-value" id="delayVal">20%</span>
                     </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <span>filter</span>
-                            <span class="control-value" id="filterVal">8000Hz</span>
-                        </div>
-                        <input type="range" id="filter" min="100" max="10000" value="8000">
+                    <input type="range" id="delay" min="0" max="100" value="20">
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>filter</span>
+                        <span class="control-value" id="filterVal">8000Hz</span>
                     </div>
+                    <input type="range" id="filter" min="100" max="10000" value="8000">
                 </div>
             </div>
 
@@ -839,6 +824,10 @@
                     <span class="shortcut-desc">clear loop</span>
                 </div>
                 <div class="shortcut">
+                    <span class="shortcut-key">v</span>
+                    <span class="shortcut-desc">download</span>
+                </div>
+                <div class="shortcut">
                     <span class="shortcut-key">x</span>
                     <span class="shortcut-desc">clear pattern</span>
                 </div>
@@ -861,6 +850,12 @@
         let loop = [];
         let isRecording = false;
         let recordingStart = 0;
+        
+        // Audio recording
+        let mediaRecorder;
+        let audioChunks = [];
+        let recordedBlob = null;
+        let mediaStreamDestination;
         
         let sequencerSteps = Array(16).fill(false);
         let currentStep = 0;
@@ -893,8 +888,12 @@
                 analyser = audioContext.createAnalyser();
                 analyser.fftSize = 2048;
                 
+                // Create media stream destination for recording
+                mediaStreamDestination = audioContext.createMediaStreamDestination();
+                
                 masterGain.connect(analyser);
                 analyser.connect(audioContext.destination);
+                masterGain.connect(mediaStreamDestination);
                 
                 isActive = true;
                 document.getElementById('sysStatus').textContent = 'active';
@@ -1145,14 +1144,42 @@
             }
             
             if (!isRecording) {
+                // Start recording
                 isRecording = true;
                 recordingStart = audioContext.currentTime;
                 loop = [];
+                audioChunks = [];
+                recordedBlob = null;
+                
+                // Hide download button if it exists
+                const downloadBtn = document.getElementById('downloadBtn');
+                if (downloadBtn) downloadBtn.style.display = 'none';
+                
+                // Start MediaRecorder
+                mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
+                
+                mediaRecorder.ondataavailable = (event) => {
+                    audioChunks.push(event.data);
+                };
+                
+                mediaRecorder.onstop = () => {
+                    recordedBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    // Show download button
+                    const downloadBtn = document.getElementById('downloadBtn');
+                    if (downloadBtn) downloadBtn.style.display = 'block';
+                };
+                
+                mediaRecorder.start();
+                
                 document.getElementById('recordBtn').textContent = 'recording...';
                 document.getElementById('recordBtn').classList.add('active');
                 document.getElementById('recStatus').textContent = 'on';
             } else {
+                // Stop recording
                 isRecording = false;
+                if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                    mediaRecorder.stop();
+                }
                 document.getElementById('recordBtn').textContent = 'rec';
                 document.getElementById('recordBtn').classList.remove('active');
                 document.getElementById('recStatus').textContent = 'off';
@@ -1181,6 +1208,24 @@
 
         document.getElementById('clearLoopBtn').addEventListener('click', () => {
             loop = [];
+        });
+
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            if (!recordedBlob) return;
+            
+            const url = URL.createObjectURL(recordedBlob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            a.download = `actual-life-${timestamp}.webm`;
+            document.body.appendChild(a);
+            a.click();
+            
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 100);
         });
 
         document.getElementById('masterVol').addEventListener('input', function() {
@@ -1252,6 +1297,10 @@
             }
             if (key === 'x') {
                 document.getElementById('clearSeq').click();
+                return;
+            }
+            if (key === 'v') {
+                document.getElementById('downloadBtn').click();
                 return;
             }
             
