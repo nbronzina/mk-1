@@ -100,6 +100,12 @@
             font-size: 0.85rem;
             color: #999;
             font-weight: 300;
+            transition: all 0.3s ease;
+        }
+
+        .hero .btn {
+            font-size: 0.7rem;
+            padding: 0.8rem 1.5rem;
         }
 
         /* Grid Layout */
@@ -154,6 +160,14 @@
             letter-spacing: 0.08em;
             text-transform: lowercase;
             color: #999;
+        }
+
+        .module-desc {
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: #bbb;
+            margin-top: 0.3rem;
+            line-height: 1.4;
         }
 
         .module-label {
@@ -417,6 +431,25 @@
             border-color: #000;
         }
 
+        .slot-btn {
+            position: relative;
+        }
+
+        .slot-btn.has-content::after {
+            content: '';
+            position: absolute;
+            top: 0.3rem;
+            right: 0.3rem;
+            width: 5px;
+            height: 5px;
+            background: #666;
+            border-radius: 50%;
+        }
+
+        .slot-btn.has-content.active::after {
+            background: #fff;
+        }
+
         .btn-group {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -426,11 +459,35 @@
 
         /* Sequencer */
         .sequencer {
+            background: #fafafa;
+            padding: 0.8rem;
+        }
+
+        .seq-row {
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            gap: 6px;
+            margin-bottom: 6px;
+            align-items: center;
+        }
+
+        .seq-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .seq-label {
+            font-size: 0.6rem;
+            font-weight: 500;
+            text-transform: lowercase;
+            color: #999;
+            text-align: right;
+            padding-right: 6px;
+        }
+
+        .seq-steps {
             display: grid;
             grid-template-columns: repeat(16, 1fr);
-            gap: 4px;
-            background: #fafafa;
-            padding: 1rem;
+            gap: 2px;
         }
 
         .step {
@@ -599,6 +656,7 @@
         <div class="hero">
             <h1>for making music with you</h1>
             <p>press enter to start</p>
+            <button class="btn" id="loadDemoBtn" style="margin-top: 1rem; max-width: 200px; margin-left: auto; margin-right: auto;">load demo</button>
         </div>
 
         <div class="status-bar">
@@ -608,12 +666,13 @@
             <div class="status-item">patterns: <span class="status-value" id="patternCount">0</span></div>
         </div>
 
-        <!-- Main Grid - Drums, Keys, Loop prominent -->
+        <!-- Main Grid - Drums + Pattern (composición agrupada) -->
         <div class="workspace">
             <!-- Drums - main instrument -->
             <div class="module module-twothird">
                 <div class="module-header">
                     <div class="module-title">drums</div>
+                    <div class="module-desc">tap pads or use keys 1-8 to play sounds</div>
                 </div>
                 <div class="pad-grid">
                     <div class="pad" data-sound="kick">
@@ -651,31 +710,59 @@
                 </div>
             </div>
 
-            <!-- Loop Station - prominent and central -->
+            <!-- Pattern - junto a drums -->
             <div class="module module-third">
                 <div class="module-header">
-                    <div class="module-title">loop</div>
+                    <div class="module-title">pattern</div>
+                    <div class="module-desc">program drum rhythms & press play</div>
                 </div>
-                <button class="btn-secondary" id="recordBtn">rec</button>
-                <button class="btn-secondary" id="playLoopBtn" style="margin-top: 0.5rem;">play</button>
-                <button class="btn-secondary" id="clearLoopBtn" style="margin-top: 0.5rem;">clear</button>
-                <button class="btn" id="downloadBtn" style="margin-top: 0.5rem; display: none;">download</button>
-                <div class="control-group" style="margin-top: 1.5rem;">
-                    <div class="control-label">
-                        <span>volume</span>
-                        <span class="control-value" id="masterVolVal">70%</span>
+                <div id="sequencer">
+                    <div class="seq-row">
+                        <div class="seq-label">kick</div>
+                        <div class="seq-steps" data-drum="kick"></div>
                     </div>
-                    <input type="range" id="masterVol" min="0" max="100" value="70">
+                    <div class="seq-row">
+                        <div class="seq-label">snare</div>
+                        <div class="seq-steps" data-drum="snare"></div>
+                    </div>
+                    <div class="seq-row">
+                        <div class="seq-label">hihat</div>
+                        <div class="seq-steps" data-drum="hihat"></div>
+                    </div>
+                    <div class="seq-row">
+                        <div class="seq-label">clap</div>
+                        <div class="seq-steps" data-drum="clap"></div>
+                    </div>
+                    <div class="seq-row">
+                        <div class="seq-label">tom</div>
+                        <div class="seq-steps" data-drum="tom1"></div>
+                    </div>
+                    <div class="seq-row">
+                        <div class="seq-label">perc</div>
+                        <div class="seq-steps" data-drum="perc"></div>
+                    </div>
+                    <div class="seq-row">
+                        <div class="seq-label">cymbal</div>
+                        <div class="seq-steps" data-drum="cymbal"></div>
+                    </div>
+                    <div class="seq-row">
+                        <div class="seq-label">rim</div>
+                        <div class="seq-steps" data-drum="rim"></div>
+                    </div>
                 </div>
-                <button class="btn" id="initBtn" style="margin-top: 1rem;">start</button>
+                <div class="btn-group" style="margin-top: 1rem;">
+                    <button class="btn-secondary" id="playSeq">play</button>
+                    <button class="btn-secondary" id="clearSeq">clear</button>
+                </div>
             </div>
         </div>
 
-        <!-- Keys - main instrument -->
+        <!-- Keys + Loop (melodía + grabación) -->
         <div class="workspace">
-            <div class="module module-full">
+            <div class="module module-twothird">
                 <div class="module-header">
                     <div class="module-title">keys</div>
+                    <div class="module-desc">play melodies with a-k keys</div>
                 </div>
                 
                 <div style="margin-bottom: 1.5rem;">
@@ -723,25 +810,66 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Visualizer - smaller, less prominent -->
-        <div class="workspace">
-            <div class="module module-full">
+            <!-- Loop Station - junto a keys -->
+            <div class="module module-third">
                 <div class="module-header">
-                    <div class="module-title">wave</div>
+                    <div class="module-title">loop</div>
+                    <div class="module-desc">record & layer up to 4 loops</div>
                 </div>
-                <div class="visualizer" style="height: 120px;">
-                    <canvas id="viz"></canvas>
+                
+                <!-- Slot selector -->
+                <div class="btn-group" style="margin-bottom: 1rem;">
+                    <button class="btn-secondary slot-btn active" data-slot="A">A</button>
+                    <button class="btn-secondary slot-btn" data-slot="B">B</button>
+                    <button class="btn-secondary slot-btn" data-slot="C">C</button>
+                    <button class="btn-secondary slot-btn" data-slot="D">D</button>
                 </div>
+                
+                <!-- Slot info -->
+                <div style="text-align: center; margin-bottom: 1rem; min-height: 1.2rem;">
+                    <span style="font-size: 0.65rem; color: #999;" id="slotInfo">slot A · empty</span>
+                </div>
+                
+                <!-- Controls -->
+                <button class="btn-secondary" id="recordBtn">rec</button>
+                <button class="btn-secondary" id="overdubBtn" style="margin-top: 0.5rem;">overdub</button>
+                <button class="btn-secondary" id="playLoopBtn" style="margin-top: 0.5rem;">play</button>
+                <button class="btn-secondary" id="playAllBtn" style="margin-top: 0.5rem;">play all</button>
+                <button class="btn-secondary" id="clearLoopBtn" style="margin-top: 0.5rem;">clear</button>
+                <button class="btn" id="downloadBtn" style="margin-top: 0.5rem; display: none;">download</button>
+                
+                <div class="control-group" style="margin-top: 1.5rem;">
+                    <div class="control-label">
+                        <span>volume</span>
+                        <span class="control-value" id="masterVolVal">70%</span>
+                    </div>
+                    <input type="range" id="masterVol" min="0" max="100" value="70">
+                </div>
+                <button class="btn" id="initBtn" style="margin-top: 1rem;">start</button>
             </div>
         </div>
 
-        <!-- Effects + Tempo + Pattern in one row -->
+        <!-- Tempo + FX + Visualizer (controles globales) -->
         <div class="workspace">
             <div class="module module-third">
                 <div class="module-header">
+                    <div class="module-title">tempo</div>
+                    <div class="module-desc">adjust playback speed</div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>bpm</span>
+                        <span class="control-value" id="tempoVal">120</span>
+                    </div>
+                    <input type="range" id="tempo" min="60" max="200" value="120">
+                </div>
+            </div>
+
+            <div class="module module-third">
+                <div class="module-header">
                     <div class="module-title">fx</div>
+                    <div class="module-desc">add effects to your sound</div>
                 </div>
                 <div class="control-group">
                     <div class="control-label">
@@ -768,25 +896,11 @@
 
             <div class="module module-third">
                 <div class="module-header">
-                    <div class="module-title">tempo</div>
+                    <div class="module-title">wave</div>
+                    <div class="module-desc">visual audio feedback</div>
                 </div>
-                <div class="control-group">
-                    <div class="control-label">
-                        <span>bpm</span>
-                        <span class="control-value" id="tempoVal">120</span>
-                    </div>
-                    <input type="range" id="tempo" min="60" max="200" value="120">
-                </div>
-            </div>
-
-            <div class="module module-third">
-                <div class="module-header">
-                    <div class="module-title">pattern</div>
-                </div>
-                <div class="sequencer" id="sequencer"></div>
-                <div class="btn-group" style="margin-top: 1rem;">
-                    <button class="btn-secondary" id="playSeq">play</button>
-                    <button class="btn-secondary" id="clearSeq">clear</button>
+                <div class="visualizer" style="height: 120px;">
+                    <canvas id="viz"></canvas>
                 </div>
             </div>
         </div>
@@ -812,12 +926,24 @@
                     <span class="shortcut-desc">start</span>
                 </div>
                 <div class="shortcut">
+                    <span class="shortcut-key">load demo</span>
+                    <span class="shortcut-desc">example track</span>
+                </div>
+                <div class="shortcut">
                     <span class="shortcut-key">r</span>
                     <span class="shortcut-desc">record</span>
                 </div>
                 <div class="shortcut">
+                    <span class="shortcut-key">o</span>
+                    <span class="shortcut-desc">overdub</span>
+                </div>
+                <div class="shortcut">
                     <span class="shortcut-key">p</span>
                     <span class="shortcut-desc">play loop</span>
+                </div>
+                <div class="shortcut">
+                    <span class="shortcut-key">l</span>
+                    <span class="shortcut-desc">play all</span>
                 </div>
                 <div class="shortcut">
                     <span class="shortcut-key">c</span>
@@ -830,6 +956,10 @@
                 <div class="shortcut">
                     <span class="shortcut-key">x</span>
                     <span class="shortcut-desc">clear pattern</span>
+                </div>
+                <div class="shortcut">
+                    <span class="shortcut-key">q/z/b/n</span>
+                    <span class="shortcut-desc">slots A/B/C/D</span>
                 </div>
             </div>
         </div>
@@ -847,17 +977,33 @@
         let analyser;
         let isActive = false;
         
-        let loop = [];
+        // Loop slots system (inspired by Teenage Engineering)
+        let loopSlots = {
+            A: { loop: [], audioBlob: null, isPlaying: false },
+            B: { loop: [], audioBlob: null, isPlaying: false },
+            C: { loop: [], audioBlob: null, isPlaying: false },
+            D: { loop: [], audioBlob: null, isPlaying: false }
+        };
+        let activeSlot = 'A';
         let isRecording = false;
         let recordingStart = 0;
+        let isOverdub = false;
         
         // Audio recording
         let mediaRecorder;
         let audioChunks = [];
-        let recordedBlob = null;
         let mediaStreamDestination;
         
-        let sequencerSteps = Array(16).fill(false);
+        let sequencerSteps = {
+            kick: Array(16).fill(false),
+            snare: Array(16).fill(false),
+            hihat: Array(16).fill(false),
+            clap: Array(16).fill(false),
+            tom1: Array(16).fill(false),
+            perc: Array(16).fill(false),
+            cymbal: Array(16).fill(false),
+            rim: Array(16).fill(false)
+        };
         let currentStep = 0;
         let isPlaying = false;
         let sequencerInterval;
@@ -913,7 +1059,7 @@
         }
 
         // Drums
-        function playDrum(type) {
+        function playDrum(type, skipRecording = false) {
             if (!audioContext) {
                 initSystem();
                 setTimeout(() => playDrum(type), 100);
@@ -922,6 +1068,13 @@
             
             if (audioContext.state === 'suspended') {
                 audioContext.resume();
+            }
+            
+            // Visual feedback
+            const pad = document.querySelector(`[data-sound="${type}"]`);
+            if (pad) {
+                pad.classList.add('active');
+                setTimeout(() => pad.classList.remove('active'), 150);
             }
             
             const osc = audioContext.createOscillator();
@@ -1003,8 +1156,8 @@
             osc.start(now);
             osc.stop(now + 1);
             
-            if (isRecording) {
-                loop.push({
+            if (!skipRecording && (isRecording || isOverdub)) {
+                loopSlots[activeSlot].loop.push({
                     type: 'drum',
                     sound: type,
                     time: audioContext.currentTime - recordingStart
@@ -1013,7 +1166,7 @@
         }
 
         // Synth
-        function playNote(freq) {
+        function playNote(freq, skipRecording = false) {
             if (!audioContext) {
                 initSystem();
                 setTimeout(() => playNote(freq), 100);
@@ -1022,6 +1175,17 @@
             
             if (audioContext.state === 'suspended') {
                 audioContext.resume();
+            }
+            
+            // Visual feedback - find the note that matches this frequency
+            const noteEntry = Object.entries(notes).find(([key, f]) => f === freq);
+            if (noteEntry) {
+                const [noteName] = noteEntry;
+                const keyEl = document.querySelector(`[data-note="${noteName}"]`);
+                if (keyEl) {
+                    keyEl.classList.add('active');
+                    setTimeout(() => keyEl.classList.remove('active'), 200);
+                }
             }
             
             const osc = audioContext.createOscillator();
@@ -1045,8 +1209,8 @@
             osc.start();
             osc.stop(audioContext.currentTime + release);
             
-            if (isRecording) {
-                loop.push({
+            if (!skipRecording && (isRecording || isOverdub)) {
+                loopSlots[activeSlot].loop.push({
                     type: 'synth',
                     freq: freq,
                     wave: wave,
@@ -1077,16 +1241,23 @@
         });
 
         const sequencer = document.getElementById('sequencer');
-        for (let i = 0; i < 16; i++) {
-            const step = document.createElement('div');
-            step.className = 'step';
-            step.dataset.index = i;
-            step.addEventListener('click', function() {
-                sequencerSteps[i] = !sequencerSteps[i];
-                this.classList.toggle('active');
-            });
-            sequencer.appendChild(step);
-        }
+        const drums = ['kick', 'snare', 'hihat', 'clap', 'tom1', 'perc', 'cymbal', 'rim'];
+        
+        drums.forEach(drum => {
+            const stepsContainer = document.querySelector(`.seq-steps[data-drum="${drum}"]`);
+            for (let i = 0; i < 16; i++) {
+                const step = document.createElement('div');
+                step.className = 'step';
+                step.dataset.drum = drum;
+                step.dataset.index = i;
+                step.addEventListener('click', function() {
+                    sequencerSteps[drum][i] = !sequencerSteps[drum][i];
+                    this.classList.toggle('active');
+                    updatePatternCount();
+                });
+                stepsContainer.appendChild(step);
+            }
+        });
 
         document.getElementById('playSeq').addEventListener('click', toggleSequencer);
 
@@ -1109,11 +1280,16 @@
                     const steps = document.querySelectorAll('.step');
                     steps.forEach(s => s.classList.remove('playing'));
                     
-                    steps[currentStep].classList.add('playing');
+                    // Highlight current step on all rows
+                    const currentSteps = document.querySelectorAll(`.step[data-index="${currentStep}"]`);
+                    currentSteps.forEach(s => s.classList.add('playing'));
                     
-                    if (sequencerSteps[currentStep]) {
-                        playDrum('kick');
-                    }
+                    // Play all active drums for this step
+                    drums.forEach(drum => {
+                        if (sequencerSteps[drum][currentStep]) {
+                            playDrum(drum);
+                        }
+                    });
                     
                     currentStep = (currentStep + 1) % 16;
                 }, interval);
@@ -1132,8 +1308,11 @@
         }
 
         document.getElementById('clearSeq').addEventListener('click', () => {
-            sequencerSteps = Array(16).fill(false);
+            drums.forEach(drum => {
+                sequencerSteps[drum] = Array(16).fill(false);
+            });
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            updatePatternCount();
         });
 
         document.getElementById('recordBtn').addEventListener('click', () => {
@@ -1144,16 +1323,15 @@
             }
             
             if (!isRecording) {
-                // Start recording
+                // Start recording (clears current slot)
                 isRecording = true;
+                isOverdub = false;
                 recordingStart = audioContext.currentTime;
-                loop = [];
+                loopSlots[activeSlot].loop = [];
                 audioChunks = [];
-                recordedBlob = null;
                 
-                // Hide download button if it exists
-                const downloadBtn = document.getElementById('downloadBtn');
-                if (downloadBtn) downloadBtn.style.display = 'none';
+                // Hide download button
+                document.getElementById('downloadBtn').style.display = 'none';
                 
                 // Start MediaRecorder
                 mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
@@ -1163,10 +1341,10 @@
                 };
                 
                 mediaRecorder.onstop = () => {
-                    recordedBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    loopSlots[activeSlot].audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    updateSlotUI();
                     // Show download button
-                    const downloadBtn = document.getElementById('downloadBtn');
-                    if (downloadBtn) downloadBtn.style.display = 'block';
+                    document.getElementById('downloadBtn').style.display = 'block';
                 };
                 
                 mediaRecorder.start();
@@ -1186,8 +1364,56 @@
             }
         });
 
+        // Overdub button - records on top of existing loop
+        document.getElementById('overdubBtn').addEventListener('click', () => {
+            if (!audioContext) {
+                initSystem();
+                setTimeout(() => document.getElementById('overdubBtn').click(), 100);
+                return;
+            }
+            
+            if (!isOverdub && !isRecording) {
+                // Start overdub (keeps existing loop)
+                isOverdub = true;
+                recordingStart = audioContext.currentTime;
+                audioChunks = [];
+                
+                // Hide download button
+                document.getElementById('downloadBtn').style.display = 'none';
+                
+                // Start MediaRecorder
+                mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
+                
+                mediaRecorder.ondataavailable = (event) => {
+                    audioChunks.push(event.data);
+                };
+                
+                mediaRecorder.onstop = () => {
+                    loopSlots[activeSlot].audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    updateSlotUI();
+                    document.getElementById('downloadBtn').style.display = 'block';
+                };
+                
+                mediaRecorder.start();
+                
+                document.getElementById('overdubBtn').textContent = 'overdubbing...';
+                document.getElementById('overdubBtn').classList.add('active');
+                document.getElementById('recStatus').textContent = 'overdub';
+            } else if (isOverdub) {
+                // Stop overdub
+                isOverdub = false;
+                if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                    mediaRecorder.stop();
+                }
+                document.getElementById('overdubBtn').textContent = 'overdub';
+                document.getElementById('overdubBtn').classList.remove('active');
+                document.getElementById('recStatus').textContent = 'off';
+            }
+        });
+
         document.getElementById('playLoopBtn').addEventListener('click', () => {
-            if (loop.length === 0) return;
+            const slot = loopSlots[activeSlot];
+            if (slot.loop.length === 0) return;
             
             if (!audioContext) {
                 initSystem();
@@ -1195,30 +1421,58 @@
                 return;
             }
             
-            loop.forEach(event => {
+            slot.loop.forEach(event => {
                 setTimeout(() => {
                     if (event.type === 'drum') {
-                        playDrum(event.sound);
+                        playDrum(event.sound, true); // skipRecording = true
                     } else if (event.type === 'synth') {
-                        playNote(event.freq);
+                        playNote(event.freq, true); // skipRecording = true
                     }
                 }, event.time * 1000);
             });
         });
 
+        // Play all slots simultaneously
+        document.getElementById('playAllBtn').addEventListener('click', () => {
+            if (!audioContext) {
+                initSystem();
+                setTimeout(() => document.getElementById('playAllBtn').click(), 100);
+                return;
+            }
+            
+            Object.keys(loopSlots).forEach(slotKey => {
+                const slot = loopSlots[slotKey];
+                if (slot.loop.length > 0) {
+                    slot.loop.forEach(event => {
+                        setTimeout(() => {
+                            if (event.type === 'drum') {
+                                playDrum(event.sound, true); // skipRecording = true
+                            } else if (event.type === 'synth') {
+                                playNote(event.freq, true); // skipRecording = true
+                            }
+                        }, event.time * 1000);
+                    });
+                }
+            });
+        });
+
         document.getElementById('clearLoopBtn').addEventListener('click', () => {
-            loop = [];
+            loopSlots[activeSlot].loop = [];
+            loopSlots[activeSlot].audioBlob = null;
+            updateSlotUI();
+            document.getElementById('downloadBtn').style.display = 'none';
         });
 
         document.getElementById('downloadBtn').addEventListener('click', () => {
-            if (!recordedBlob) return;
+            const blob = loopSlots[activeSlot].audioBlob;
+            if (!blob) return;
             
-            const url = URL.createObjectURL(recordedBlob);
+            const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.style.display = 'none';
             a.href = url;
             const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-            a.download = `actual-life-${timestamp}.webm`;
+            a.download = `actual-life-slot-${activeSlot}-${timestamp}.webm`;
             document.body.appendChild(a);
             a.click();
             
@@ -1227,6 +1481,47 @@
                 URL.revokeObjectURL(url);
             }, 100);
         });
+
+        // Slot selector buttons
+        document.querySelectorAll('.slot-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all slots
+                document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked slot
+                this.classList.add('active');
+                // Update active slot
+                activeSlot = this.dataset.slot;
+                // Update UI
+                updateSlotUI();
+            });
+        });
+
+        // Update slot UI (info text and indicators)
+        function updateSlotUI() {
+            const slot = loopSlots[activeSlot];
+            const hasContent = slot.loop.length > 0;
+            
+            // Update slot info text
+            const infoText = hasContent ? `slot ${activeSlot} · ${slot.loop.length} events` : `slot ${activeSlot} · empty`;
+            document.getElementById('slotInfo').textContent = infoText;
+            
+            // Update slot button indicators
+            document.querySelectorAll('.slot-btn').forEach(btn => {
+                const slotKey = btn.dataset.slot;
+                if (loopSlots[slotKey].loop.length > 0) {
+                    btn.classList.add('has-content');
+                } else {
+                    btn.classList.remove('has-content');
+                }
+            });
+            
+            // Show/hide download button
+            if (slot.audioBlob) {
+                document.getElementById('downloadBtn').style.display = 'block';
+            } else {
+                document.getElementById('downloadBtn').style.display = 'none';
+            }
+        }
 
         document.getElementById('masterVol').addEventListener('input', function() {
             if (masterGain) masterGain.gain.value = this.value / 100;
@@ -1287,8 +1582,16 @@
                 document.getElementById('recordBtn').click();
                 return;
             }
+            if (key === 'o') {
+                document.getElementById('overdubBtn').click();
+                return;
+            }
             if (key === 'p') {
                 document.getElementById('playLoopBtn').click();
+                return;
+            }
+            if (key === 'l') {
+                document.getElementById('playAllBtn').click();
                 return;
             }
             if (key === 'c') {
@@ -1301,6 +1604,24 @@
             }
             if (key === 'v') {
                 document.getElementById('downloadBtn').click();
+                return;
+            }
+            
+            // Slot selection
+            if (key === 'q') {
+                document.querySelector('[data-slot="A"]').click();
+                return;
+            }
+            if (key === 'z') {
+                document.querySelector('[data-slot="B"]').click();
+                return;
+            }
+            if (key === 'b') {
+                document.querySelector('[data-slot="C"]').click();
+                return;
+            }
+            if (key === 'n') {
+                document.querySelector('[data-slot="D"]').click();
                 return;
             }
             
@@ -1382,21 +1703,96 @@
         setInterval(updateTimestamp, 1000);
 
         // Pattern counter
-        let patternCount = 0;
-        const originalToggleSequencer = toggleSequencer;
-        
-        // Track patterns created
-        document.querySelectorAll('.step').forEach(step => {
-            step.addEventListener('click', function() {
-                // Count active steps
-                const activeSteps = Array.from(document.querySelectorAll('.step')).filter(s => s.classList.contains('active')).length;
-                if (activeSteps > 0) {
-                    patternCount = 1;
-                } else {
-                    patternCount = 0;
-                }
-                document.getElementById('patternCount').textContent = patternCount;
+        function updatePatternCount() {
+            let totalActive = 0;
+            drums.forEach(drum => {
+                const activeSteps = sequencerSteps[drum].filter(step => step).length;
+                totalActive += activeSteps;
             });
+            document.getElementById('patternCount').textContent = totalActive > 0 ? 1 : 0;
+        }
+
+        // Load Demo - creates a musical example
+        document.getElementById('loadDemoBtn').addEventListener('click', () => {
+            if (!audioContext) {
+                initSystem();
+            }
+            
+            // Clear everything first
+            Object.keys(loopSlots).forEach(key => {
+                loopSlots[key].loop = [];
+                loopSlots[key].audioBlob = null;
+            });
+            drums.forEach(drum => {
+                sequencerSteps[drum] = Array(16).fill(false);
+            });
+            
+            // Load Pattern - Basic house beat
+            // Kick on 1, 5, 9, 13 (four on the floor)
+            sequencerSteps.kick[0] = true;
+            sequencerSteps.kick[4] = true;
+            sequencerSteps.kick[8] = true;
+            sequencerSteps.kick[12] = true;
+            
+            // Snare on 4, 12 (backbeat)
+            sequencerSteps.snare[4] = true;
+            sequencerSteps.snare[12] = true;
+            
+            // Hi-hat every other step (16th notes)
+            for (let i = 0; i < 16; i += 2) {
+                sequencerSteps.hihat[i] = true;
+            }
+            
+            // Clap on 4, 12 (with snare)
+            sequencerSteps.clap[4] = true;
+            sequencerSteps.clap[12] = true;
+            
+            // Update visual
+            document.querySelectorAll('.step').forEach(step => {
+                const drum = step.dataset.drum;
+                const index = parseInt(step.dataset.index);
+                if (sequencerSteps[drum][index]) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+            
+            // Load Loop A - Simple melody
+            activeSlot = 'A';
+            document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('[data-slot="A"]').classList.add('active');
+            
+            // Create a simple melodic loop (C major scale)
+            loopSlots.A.loop = [
+                { type: 'synth', freq: notes.C4, wave: 'sine', time: 0 },
+                { type: 'synth', freq: notes.E4, wave: 'sine', time: 0.5 },
+                { type: 'synth', freq: notes.G4, wave: 'sine', time: 1.0 },
+                { type: 'synth', freq: notes.C5, wave: 'sine', time: 1.5 },
+                { type: 'synth', freq: notes.G4, wave: 'sine', time: 2.0 },
+                { type: 'synth', freq: notes.E4, wave: 'sine', time: 2.5 },
+                { type: 'synth', freq: notes.C4, wave: 'sine', time: 3.0 }
+            ];
+            
+            // Set tempo to 120 (default)
+            document.getElementById('tempo').value = 120;
+            document.getElementById('tempoVal').textContent = '120';
+            document.getElementById('tempoStatus').textContent = '120';
+            
+            // Set wave to sine for melodic sound
+            document.getElementById('waveType').value = 'sine';
+            
+            // Update UI
+            updatePatternCount();
+            updateSlotUI();
+            
+            // Show message
+            const heroP = document.querySelector('.hero p');
+            const originalText = heroP.textContent;
+            heroP.textContent = 'demo loaded! press space to play pattern or P to play loop';
+            setTimeout(() => {
+                heroP.textContent = originalText;
+            }, 4000);
         });
     </script>
 </body>
