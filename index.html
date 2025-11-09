@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>actual life (playground)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>playground mk-1</title>
     <style>
         * {
             margin: 0;
@@ -17,6 +17,8 @@
             color: #000;
             line-height: 1.6;
             position: relative;
+            overscroll-behavior: none;
+            -webkit-overflow-scrolling: touch;
         }
 
         /* Film grain texture overlay - FIJO */
@@ -103,9 +105,11 @@
             transition: all 0.3s ease;
         }
 
-        .hero .btn {
+        .hero .btn,
+        .hero .btn-secondary {
             font-size: 0.7rem;
             padding: 0.8rem 1.5rem;
+            width: 100%;
         }
 
         /* Grid Layout */
@@ -122,6 +126,7 @@
             padding: 1.5rem;
             position: relative;
             overflow: hidden;
+            min-width: 0; /* Prevents overflow */
         }
 
         /* Grain texture on modules - FIJO */
@@ -221,6 +226,9 @@
             transition: all 0.15s ease;
             position: relative;
             overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .pad::before {
@@ -281,6 +289,7 @@
             height: 140px;
             background: #e0e0e0;
             padding: 1px;
+            position: relative;
         }
 
         .key {
@@ -293,6 +302,8 @@
             align-items: flex-end;
             justify-content: center;
             padding-bottom: 1rem;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         .key-label {
@@ -403,6 +414,9 @@
             letter-spacing: 0.05em;
             cursor: pointer;
             transition: all 0.15s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .btn:hover {
@@ -418,6 +432,9 @@
             background: #fefefe;
             color: #000;
             border: 1px solid #e0e0e0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .btn-secondary:hover {
@@ -496,6 +513,9 @@
             border: 1px solid #e0e0e0;
             cursor: pointer;
             transition: all 0.1s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .step:hover {
@@ -624,39 +644,334 @@
         }
 
         @media (max-width: 768px) {
+            /* Header */
+            .header {
+                padding: 1rem 1.5rem;
+            }
+
+            .brand {
+                font-size: 0.9rem;
+            }
+
+            /* Hero */
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
 
+            .hero p {
+                font-size: 0.8rem;
+            }
+
+            .hero .btn,
+            .hero .btn-secondary {
+                font-size: 0.65rem;
+                padding: 0.7rem 1.2rem;
+            }
+
+            /* Container */
             .container {
-                padding: 2rem 1rem;
+                padding: 1.5rem 1rem;
             }
 
+            /* Modules */
             .module {
-                padding: 1.5rem;
+                padding: 1rem;
             }
 
+            .module-header {
+                margin-bottom: 0.8rem;
+                padding-bottom: 0.6rem;
+            }
+
+            .module-title {
+                font-size: 0.65rem;
+            }
+
+            .module-desc {
+                font-size: 0.6rem;
+            }
+
+            /* Workspace */
+            .workspace {
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            /* Drum pads */
+            .pad-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0.8rem;
+            }
+
+            .pad-label {
+                font-size: 0.65rem;
+            }
+
+            .pad-key {
+                font-size: 0.6rem;
+                top: 0.4rem;
+                right: 0.4rem;
+            }
+
+            /* Keyboard */
             .keyboard {
+                height: 100px;
                 overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
             }
 
             .key {
+                min-width: 35px;
+                padding-bottom: 0.8rem;
+            }
+
+            .key.black {
+                height: 65px;
+                min-width: 25px;
+            }
+
+            .key-label {
+                font-size: 0.6rem;
+            }
+
+            /* Sequencer */
+            .sequencer {
+                padding: 0.6rem;
+            }
+
+            .seq-row {
+                grid-template-columns: 40px 1fr;
+                gap: 4px;
+                margin-bottom: 4px;
+            }
+
+            .seq-label {
+                font-size: 0.55rem;
+                padding-right: 4px;
+            }
+
+            .seq-steps {
+                gap: 1.5px;
+            }
+
+            /* Controls */
+            .control-label {
+                font-size: 0.65rem;
+            }
+
+            .control-group {
+                margin-bottom: 1rem;
+            }
+
+            /* Buttons */
+            .btn, .btn-secondary {
+                font-size: 0.7rem;
+                padding: 0.8rem;
+            }
+
+            .btn-group {
+                gap: 0.4rem;
+            }
+
+            /* Select */
+            select {
+                font-size: 0.8rem;
+                padding: 0.7rem 0.9rem;
+            }
+
+            /* Status bar */
+            .status-bar {
+                padding: 0.8rem 1rem;
+                font-size: 0.65rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .status-item {
+                flex: 1 1 45%;
+            }
+
+            /* Visualizer */
+            .visualizer {
+                height: 80px !important;
+            }
+
+            /* Info section */
+            .info {
+                padding: 1.5rem;
+            }
+
+            .shortcuts-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 0.8rem;
+            }
+
+            .shortcut {
+                font-size: 0.8rem;
+            }
+
+            .shortcut-key {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.5rem;
                 min-width: 45px;
+            }
+        }
+
+        /* Mobile small screens */
+        @media (max-width: 480px) {
+            /* Header */
+            .header {
+                padding: 0.8rem 1rem;
+            }
+
+            .brand {
+                font-size: 0.8rem;
+            }
+
+            /* Hero */
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+
+            .hero p {
+                font-size: 0.75rem;
+            }
+
+            .hero .btn,
+            .hero .btn-secondary {
+                font-size: 0.6rem;
+                padding: 0.65rem 1rem;
+            }
+
+            /* Container */
+            .container {
+                padding: 1rem 0.8rem;
+            }
+
+            /* Modules */
+            .module {
+                padding: 0.8rem;
+            }
+
+            /* Drum pads - 2 columns on very small screens */
+            .pad-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
+            }
+
+            /* Keyboard */
+            .keyboard {
+                height: 90px;
+            }
+
+            .key {
+                min-width: 30px;
+            }
+
+            .key.black {
+                height: 60px;
+                min-width: 20px;
+            }
+
+            /* Sequencer */
+            .seq-row {
+                grid-template-columns: 35px 1fr;
+            }
+
+            .seq-label {
+                font-size: 0.5rem;
+            }
+
+            /* Status bar */
+            .status-bar {
+                padding: 0.7rem 0.8rem;
+                font-size: 0.6rem;
+            }
+
+            /* Slot info */
+            .module .btn-group {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .slot-btn {
+                font-size: 0.65rem;
+            }
+
+            /* Info section */
+            .shortcuts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tablet specific */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            /* Allow some 2-column layouts on tablet */
+            .module-half {
+                grid-column: span 6;
+            }
+
+            /* Drums can stay 2/3 on tablet */
+            .workspace:first-of-type .module-twothird {
+                grid-column: span 8;
+            }
+
+            .workspace:first-of-type .module-third {
+                grid-column: span 4;
+            }
+        }
+
+        /* Touch improvements for all mobile/tablet */
+        @media (hover: none) and (pointer: coarse) {
+            .pad, .key, .step, .btn, .btn-secondary, .slot-btn {
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+
+            /* Larger touch targets */
+            .pad {
+                min-height: 60px;
+            }
+
+            .step {
+                min-height: 20px;
+            }
+
+            input[type="range"] {
+                height: 30px;
+                padding: 10px 0;
+            }
+
+            input[type="range"]::-webkit-slider-thumb {
+                width: 20px;
+                height: 20px;
+            }
+
+            input[type="range"]::-moz-range-thumb {
+                width: 20px;
+                height: 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="brand">actual life (playground)</div>
+        <div class="brand">playground mk-1</div>
         <div style="font-size: 0.7rem; color: #999; font-weight: 400; margin-top: 0.3rem;" id="timestamp"></div>
     </div>
 
     <div class="container">
         <div class="hero">
-            <h1>for making music with you</h1>
+            <h1>create · loop · play</h1>
             <p>press enter to start</p>
-            <button class="btn" id="loadDemoBtn" style="margin-top: 1rem; max-width: 200px; margin-left: auto; margin-right: auto;">load demo</button>
+            <div style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem;">
+                <button class="btn" id="loadDemoBtn" style="max-width: 150px;">load demo</button>
+                <button class="btn-secondary" id="clearAllBtn" style="max-width: 150px; padding: 0.8rem 1.5rem; font-size: 0.7rem;">clear all</button>
+            </div>
         </div>
 
         <div class="status-bar">
@@ -930,6 +1245,10 @@
                     <span class="shortcut-desc">example track</span>
                 </div>
                 <div class="shortcut">
+                    <span class="shortcut-key">clear all</span>
+                    <span class="shortcut-desc">reset everything</span>
+                </div>
+                <div class="shortcut">
                     <span class="shortcut-key">r</span>
                     <span class="shortcut-desc">record</span>
                 </div>
@@ -1058,7 +1377,7 @@
             }
         }
 
-        // Drums
+        // Drums - Enhanced realistic synthesis
         function playDrum(type, skipRecording = false) {
             if (!audioContext) {
                 initSystem();
@@ -1077,84 +1396,236 @@
                 setTimeout(() => pad.classList.remove('active'), 150);
             }
             
-            const osc = audioContext.createOscillator();
-            const gain = audioContext.createGain();
-            const filter = audioContext.createBiquadFilter();
-            
-            osc.connect(filter);
-            filter.connect(gain);
-            gain.connect(masterGain);
-            
             const now = audioContext.currentTime;
             
             switch(type) {
                 case 'kick':
-                    // Deep, punchy kick
-                    osc.frequency.setValueAtTime(120, now);
-                    osc.frequency.exponentialRampToValueAtTime(0.01, now + 0.4);
-                    filter.type = 'lowpass';
-                    filter.frequency.value = 200;
-                    gain.gain.setValueAtTime(1.2, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+                    // Realistic kick: pitch envelope + punch
+                    const kickOsc = audioContext.createOscillator();
+                    const kickGain = audioContext.createGain();
+                    const kickFilter = audioContext.createBiquadFilter();
+                    
+                    kickOsc.type = 'sine';
+                    kickOsc.frequency.setValueAtTime(150, now);
+                    kickOsc.frequency.exponentialRampToValueAtTime(40, now + 0.05);
+                    kickOsc.frequency.exponentialRampToValueAtTime(20, now + 0.5);
+                    
+                    kickFilter.type = 'lowpass';
+                    kickFilter.frequency.value = 200;
+                    kickFilter.Q.value = 1;
+                    
+                    kickGain.gain.setValueAtTime(1.5, now);
+                    kickGain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+                    
+                    kickOsc.connect(kickFilter);
+                    kickFilter.connect(kickGain);
+                    kickGain.connect(masterGain);
+                    
+                    kickOsc.start(now);
+                    kickOsc.stop(now + 0.5);
                     break;
+                    
                 case 'snare':
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(200, now);
-                    filter.type = 'highpass';
-                    filter.frequency.value = 1000;
-                    gain.gain.setValueAtTime(0.5, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                    // Realistic snare: noise + tone
+                    const snareOsc = audioContext.createOscillator();
+                    const snareNoise = audioContext.createBufferSource();
+                    const snareNoiseFilter = audioContext.createBiquadFilter();
+                    const snareGain = audioContext.createGain();
+                    const snareNoiseGain = audioContext.createGain();
+                    
+                    // Tone component
+                    snareOsc.type = 'triangle';
+                    snareOsc.frequency.value = 180;
+                    
+                    // Noise component
+                    const noiseBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 0.2, audioContext.sampleRate);
+                    const noiseData = noiseBuffer.getChannelData(0);
+                    for (let i = 0; i < noiseBuffer.length; i++) {
+                        noiseData[i] = Math.random() * 2 - 1;
+                    }
+                    snareNoise.buffer = noiseBuffer;
+                    
+                    snareNoiseFilter.type = 'highpass';
+                    snareNoiseFilter.frequency.value = 1000;
+                    
+                    snareGain.gain.setValueAtTime(0.4, now);
+                    snareGain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                    
+                    snareNoiseGain.gain.setValueAtTime(0.8, now);
+                    snareNoiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                    
+                    snareOsc.connect(snareGain);
+                    snareNoise.connect(snareNoiseFilter);
+                    snareNoiseFilter.connect(snareNoiseGain);
+                    snareGain.connect(masterGain);
+                    snareNoiseGain.connect(masterGain);
+                    
+                    snareOsc.start(now);
+                    snareOsc.stop(now + 0.2);
+                    snareNoise.start(now);
+                    snareNoise.stop(now + 0.15);
                     break;
+                    
                 case 'hihat':
-                    osc.type = 'square';
-                    osc.frequency.setValueAtTime(300, now);
-                    filter.type = 'highpass';
-                    filter.frequency.value = 5000;
-                    gain.gain.setValueAtTime(0.3, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                    // Realistic hi-hat: filtered noise
+                    const hihatNoise = audioContext.createBufferSource();
+                    const hihatFilter = audioContext.createBiquadFilter();
+                    const hihatGain = audioContext.createGain();
+                    
+                    const hihatBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 0.1, audioContext.sampleRate);
+                    const hihatData = hihatBuffer.getChannelData(0);
+                    for (let i = 0; i < hihatBuffer.length; i++) {
+                        hihatData[i] = Math.random() * 2 - 1;
+                    }
+                    hihatNoise.buffer = hihatBuffer;
+                    
+                    hihatFilter.type = 'highpass';
+                    hihatFilter.frequency.value = 7000;
+                    hihatFilter.Q.value = 1;
+                    
+                    hihatGain.gain.setValueAtTime(0.3, now);
+                    hihatGain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                    
+                    hihatNoise.connect(hihatFilter);
+                    hihatFilter.connect(hihatGain);
+                    hihatGain.connect(masterGain);
+                    
+                    hihatNoise.start(now);
                     break;
+                    
                 case 'clap':
-                    osc.type = 'square';
-                    osc.frequency.setValueAtTime(500, now);
-                    gain.gain.setValueAtTime(0.4, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                    // Realistic clap: multiple noise bursts
+                    for (let i = 0; i < 3; i++) {
+                        const clapNoise = audioContext.createBufferSource();
+                        const clapFilter = audioContext.createBiquadFilter();
+                        const clapGain = audioContext.createGain();
+                        
+                        const clapBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 0.05, audioContext.sampleRate);
+                        const clapData = clapBuffer.getChannelData(0);
+                        for (let j = 0; j < clapBuffer.length; j++) {
+                            clapData[j] = Math.random() * 2 - 1;
+                        }
+                        clapNoise.buffer = clapBuffer;
+                        
+                        clapFilter.type = 'bandpass';
+                        clapFilter.frequency.value = 1000;
+                        clapFilter.Q.value = 5;
+                        
+                        const delay = i * 0.015;
+                        clapGain.gain.setValueAtTime(0.5, now + delay);
+                        clapGain.gain.exponentialRampToValueAtTime(0.01, now + delay + 0.05);
+                        
+                        clapNoise.connect(clapFilter);
+                        clapFilter.connect(clapGain);
+                        clapGain.connect(masterGain);
+                        
+                        clapNoise.start(now + delay);
+                    }
                     break;
+                    
                 case 'tom1':
-                    // Tom with more resonance and tone
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(220, now);
-                    osc.frequency.exponentialRampToValueAtTime(180, now + 0.05);
-                    osc.frequency.exponentialRampToValueAtTime(160, now + 0.3);
-                    filter.type = 'lowpass';
-                    filter.frequency.value = 800;
-                    filter.Q.value = 3;
-                    gain.gain.setValueAtTime(0.8, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+                    // Realistic tom: pitch envelope + resonance
+                    const tomOsc = audioContext.createOscillator();
+                    const tomGain = audioContext.createGain();
+                    const tomFilter = audioContext.createBiquadFilter();
+                    
+                    tomOsc.type = 'sine';
+                    tomOsc.frequency.setValueAtTime(220, now);
+                    tomOsc.frequency.exponentialRampToValueAtTime(150, now + 0.1);
+                    
+                    tomFilter.type = 'lowpass';
+                    tomFilter.frequency.value = 800;
+                    tomFilter.Q.value = 8;
+                    
+                    tomGain.gain.setValueAtTime(1.0, now);
+                    tomGain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+                    
+                    tomOsc.connect(tomFilter);
+                    tomFilter.connect(tomGain);
+                    tomGain.connect(masterGain);
+                    
+                    tomOsc.start(now);
+                    tomOsc.stop(now + 0.4);
                     break;
+                    
                 case 'perc':
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(400, now);
-                    gain.gain.setValueAtTime(0.4, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                    // Realistic perc: metallic tone
+                    const percOsc1 = audioContext.createOscillator();
+                    const percOsc2 = audioContext.createOscillator();
+                    const percGain = audioContext.createGain();
+                    
+                    percOsc1.type = 'square';
+                    percOsc1.frequency.value = 800;
+                    percOsc2.type = 'square';
+                    percOsc2.frequency.value = 540;
+                    
+                    percGain.gain.setValueAtTime(0.3, now);
+                    percGain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                    
+                    percOsc1.connect(percGain);
+                    percOsc2.connect(percGain);
+                    percGain.connect(masterGain);
+                    
+                    percOsc1.start(now);
+                    percOsc2.start(now);
+                    percOsc1.stop(now + 0.08);
+                    percOsc2.stop(now + 0.08);
                     break;
+                    
                 case 'cymbal':
-                    osc.type = 'square';
-                    osc.frequency.setValueAtTime(800, now);
-                    filter.type = 'highpass';
-                    filter.frequency.value = 3000;
-                    gain.gain.setValueAtTime(0.3, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+                    // Realistic cymbal: complex filtered noise
+                    const cymbalNoise = audioContext.createBufferSource();
+                    const cymbalFilter1 = audioContext.createBiquadFilter();
+                    const cymbalFilter2 = audioContext.createBiquadFilter();
+                    const cymbalGain = audioContext.createGain();
+                    
+                    const cymbalBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 0.8, audioContext.sampleRate);
+                    const cymbalData = cymbalBuffer.getChannelData(0);
+                    for (let i = 0; i < cymbalBuffer.length; i++) {
+                        cymbalData[i] = Math.random() * 2 - 1;
+                    }
+                    cymbalNoise.buffer = cymbalBuffer;
+                    
+                    cymbalFilter1.type = 'highpass';
+                    cymbalFilter1.frequency.value = 5000;
+                    cymbalFilter2.type = 'bandpass';
+                    cymbalFilter2.frequency.value = 8000;
+                    cymbalFilter2.Q.value = 2;
+                    
+                    cymbalGain.gain.setValueAtTime(0.3, now);
+                    cymbalGain.gain.exponentialRampToValueAtTime(0.01, now + 0.8);
+                    
+                    cymbalNoise.connect(cymbalFilter1);
+                    cymbalFilter1.connect(cymbalFilter2);
+                    cymbalFilter2.connect(cymbalGain);
+                    cymbalGain.connect(masterGain);
+                    
+                    cymbalNoise.start(now);
                     break;
+                    
                 case 'rim':
-                    osc.type = 'square';
-                    osc.frequency.setValueAtTime(600, now);
-                    gain.gain.setValueAtTime(0.3, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                    // Realistic rimshot: short click
+                    const rimOsc = audioContext.createOscillator();
+                    const rimGain = audioContext.createGain();
+                    const rimFilter = audioContext.createBiquadFilter();
+                    
+                    rimOsc.type = 'square';
+                    rimOsc.frequency.value = 1000;
+                    
+                    rimFilter.type = 'highpass';
+                    rimFilter.frequency.value = 2000;
+                    
+                    rimGain.gain.setValueAtTime(0.5, now);
+                    rimGain.gain.exponentialRampToValueAtTime(0.01, now + 0.03);
+                    
+                    rimOsc.connect(rimFilter);
+                    rimFilter.connect(rimGain);
+                    rimGain.connect(masterGain);
+                    
+                    rimOsc.start(now);
+                    rimOsc.stop(now + 0.03);
                     break;
             }
-            
-            osc.start(now);
-            osc.stop(now + 1);
             
             if (!skipRecording && (isRecording || isOverdub)) {
                 loopSlots[activeSlot].loop.push({
@@ -1222,21 +1693,35 @@
         // Event Listeners
         document.getElementById('initBtn').addEventListener('click', initSystem);
 
+        // Helper function for touch-friendly event listeners
+        function addTouchClick(element, handler) {
+            let touchHandled = false;
+            
+            element.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                touchHandled = true;
+                handler.call(this, e);
+            });
+            
+            element.addEventListener('click', function(e) {
+                if (!touchHandled) {
+                    handler.call(this, e);
+                }
+                touchHandled = false;
+            });
+        }
+
         document.querySelectorAll('.pad').forEach(pad => {
-            pad.addEventListener('click', function() {
+            addTouchClick(pad, function() {
                 const sound = this.dataset.sound;
                 playDrum(sound);
-                this.classList.add('active');
-                setTimeout(() => this.classList.remove('active'), 150);
             });
         });
 
         document.querySelectorAll('.key').forEach(key => {
-            key.addEventListener('click', function() {
+            addTouchClick(key, function() {
                 const note = this.dataset.note;
                 playNote(notes[note]);
-                this.classList.add('active');
-                setTimeout(() => this.classList.remove('active'), 200);
             });
         });
 
@@ -1250,7 +1735,7 @@
                 step.className = 'step';
                 step.dataset.drum = drum;
                 step.dataset.index = i;
-                step.addEventListener('click', function() {
+                addTouchClick(step, function() {
                     sequencerSteps[drum][i] = !sequencerSteps[drum][i];
                     this.classList.toggle('active');
                     updatePatternCount();
@@ -1472,7 +1957,7 @@
             a.style.display = 'none';
             a.href = url;
             const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-            a.download = `actual-life-slot-${activeSlot}-${timestamp}.webm`;
+            a.download = `playground-mk1-slot-${activeSlot}-${timestamp}.webm`;
             document.body.appendChild(a);
             a.click();
             
@@ -1686,9 +2171,21 @@
             ctx.stroke();
         }
 
-        window.addEventListener('resize', () => {
+        // Responsive canvas resize with debouncing
+        let resizeTimeout;
+        function resizeCanvas() {
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
+        }
+        
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(resizeCanvas, 100);
+        });
+        
+        // Handle orientation change on mobile
+        window.addEventListener('orientationchange', () => {
+            setTimeout(resizeCanvas, 300);
         });
 
         // Timestamp display
@@ -1793,6 +2290,77 @@
             setTimeout(() => {
                 heroP.textContent = originalText;
             }, 4000);
+        });
+
+        // Clear All - resets everything to initial state
+        document.getElementById('clearAllBtn').addEventListener('click', () => {
+            // Clear all loop slots
+            Object.keys(loopSlots).forEach(key => {
+                loopSlots[key].loop = [];
+                loopSlots[key].audioBlob = null;
+                loopSlots[key].isPlaying = false;
+            });
+            
+            // Clear all sequencer patterns
+            drums.forEach(drum => {
+                sequencerSteps[drum] = Array(16).fill(false);
+            });
+            
+            // Update visual for sequencer
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Stop sequencer if playing
+            if (isPlaying) {
+                stopSequencer();
+            }
+            
+            // Reset to slot A
+            activeSlot = 'A';
+            document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('[data-slot="A"]').classList.add('active');
+            
+            // Reset controls to defaults
+            document.getElementById('tempo').value = 120;
+            document.getElementById('tempoVal').textContent = '120';
+            document.getElementById('tempoStatus').textContent = '120';
+            
+            document.getElementById('waveType').value = 'sine';
+            
+            document.getElementById('attack').value = 10;
+            document.getElementById('attackVal').textContent = '10ms';
+            
+            document.getElementById('release').value = 300;
+            document.getElementById('releaseVal').textContent = '300ms';
+            
+            document.getElementById('reverb').value = 40;
+            document.getElementById('reverbVal').textContent = '40%';
+            
+            document.getElementById('delay').value = 20;
+            document.getElementById('delayVal').textContent = '20%';
+            
+            document.getElementById('filter').value = 8000;
+            document.getElementById('filterVal').textContent = '8000Hz';
+            
+            document.getElementById('masterVol').value = 70;
+            document.getElementById('masterVolVal').textContent = '70%';
+            if (masterGain) masterGain.gain.value = 0.7;
+            
+            // Hide download button
+            document.getElementById('downloadBtn').style.display = 'none';
+            
+            // Update UI
+            updatePatternCount();
+            updateSlotUI();
+            
+            // Show message
+            const heroP = document.querySelector('.hero p');
+            const originalText = heroP.textContent;
+            heroP.textContent = 'everything cleared! ready to create';
+            setTimeout(() => {
+                heroP.textContent = originalText;
+            }, 3000);
         });
     </script>
 </body>
