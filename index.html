@@ -1054,7 +1054,7 @@
             <div class="module module-third">
                 <div class="module-header">
                     <div class="module-title">pattern</div>
-                    <div class="module-desc">program drum rhythms & press play</div>
+                    <div class="module-desc">program rhythms · play auto-records</div>
                 </div>
                 <div id="sequencer">
                     <div class="seq-row">
@@ -1091,7 +1091,7 @@
                     </div>
                 </div>
                 <div class="btn-group" style="margin-top: 1rem;">
-                    <button class="btn-secondary" id="playSeq">play</button>
+                    <button class="btn-secondary" id="playSeq">play+rec</button>
                     <button class="btn-secondary" id="clearSeq">clear</button>
                 </div>
             </div>
@@ -1184,23 +1184,23 @@
                 <div class="control-group">
                     <div class="control-label">
                         <span>reverb</span>
-                        <span class="control-value" id="reverbVal">40%</span>
+                        <span class="control-value" id="reverbVal">0%</span>
                     </div>
-                    <input type="range" id="reverb" min="0" max="100" value="40">
+                    <input type="range" id="reverb" min="0" max="100" value="0">
                 </div>
                 <div class="control-group">
                     <div class="control-label">
                         <span>delay</span>
-                        <span class="control-value" id="delayVal">20%</span>
+                        <span class="control-value" id="delayVal">0%</span>
                     </div>
-                    <input type="range" id="delay" min="0" max="100" value="20">
+                    <input type="range" id="delay" min="0" max="100" value="0">
                 </div>
                 <div class="control-group">
                     <div class="control-label">
                         <span>filter</span>
-                        <span class="control-value" id="filterVal">8000Hz</span>
+                        <span class="control-value" id="filterVal">10000Hz</span>
                     </div>
-                    <input type="range" id="filter" min="100" max="10000" value="8000">
+                    <input type="range" id="filter" min="100" max="10000" value="10000">
                 </div>
             </div>
 
@@ -1225,8 +1225,8 @@
                     <span style="font-size: 0.65rem; color: #999;" id="slotInfo">slot A · empty</span>
                 </div>
                 
-                <button class="btn-secondary" id="recordBtn">rec</button>
-                <button class="btn-secondary" id="overdubBtn" style="margin-top: 0.5rem;">overdub</button>
+                <button class="btn-secondary" id="recordBtn">rec manual</button>
+                <button class="btn-secondary" id="overdubBtn" style="margin-top: 0.5rem;">add layer</button>
                 <button class="btn-secondary" id="playLoopBtn" style="margin-top: 0.5rem;">play</button>
                 <button class="btn-secondary" id="playAllBtn" style="margin-top: 0.5rem;">play all</button>
                 <button class="btn-secondary" id="clearLoopBtn" style="margin-top: 0.5rem;">clear</button>
@@ -1257,7 +1257,7 @@
                 </div>
                 <div class="shortcut">
                     <span class="shortcut-key">space</span>
-                    <span class="shortcut-desc">play/stop</span>
+                    <span class="shortcut-desc">play+rec</span>
                 </div>
                 <div class="shortcut">
                     <span class="shortcut-key">enter</span>
@@ -1273,11 +1273,11 @@
                 </div>
                 <div class="shortcut">
                     <span class="shortcut-key">r</span>
-                    <span class="shortcut-desc">record</span>
+                    <span class="shortcut-desc">rec manual</span>
                 </div>
                 <div class="shortcut">
                     <span class="shortcut-key">o</span>
-                    <span class="shortcut-desc">overdub</span>
+                    <span class="shortcut-desc">add layer</span>
                 </div>
                 <div class="shortcut">
                     <span class="shortcut-key">p</span>
@@ -1470,7 +1470,7 @@
                 const delayFeedback = audioContext.createGain();
                 delayFeedback.gain.value = 0.3;
                 const delayMix = audioContext.createGain();
-                delayMix.gain.value = 0.2;
+                delayMix.gain.value = 0;
                 
                 delayNode.connect(delayFeedback);
                 delayFeedback.connect(delayNode);
@@ -1478,7 +1478,7 @@
                 
                 const reverbNode = audioContext.createConvolver();
                 const reverbMix = audioContext.createGain();
-                reverbMix.gain.value = 0.4;
+                reverbMix.gain.value = 0;
                 
                 const reverbTime = 2;
                 const sampleRate = audioContext.sampleRate;
@@ -1497,7 +1497,7 @@
                 
                 const filterNode = audioContext.createBiquadFilter();
                 filterNode.type = 'lowpass';
-                filterNode.frequency.value = 8000;
+                filterNode.frequency.value = 10000;
                 filterNode.Q.value = 1;
                 
                 masterGain.connect(delayNode);
@@ -1964,6 +1964,45 @@
                 document.getElementById('playSeq').textContent = 'stop';
                 document.getElementById('playSeq').classList.add('active');
                 
+                // AUTO-START RECORDING when play is pressed
+                if (!isRecording && !isOverdub) {
+                    isRecording = true;
+                    recordingStart = audioContext.currentTime;
+                    loopSlots[activeSlot].loop = [];
+                    audioChunks = [];
+                    
+                    document.getElementById('downloadBtn').style.display = 'none';
+                    
+                    mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
+                    
+                    mediaRecorder.ondataavailable = (event) => {
+                        audioChunks.push(event.data);
+                    };
+                    
+                    mediaRecorder.onstop = async () => {
+                        const blob = new Blob(audioChunks, { type: 'audio/webm' });
+                        loopSlots[activeSlot].audioBlob = blob;
+                        
+                        try {
+                            const arrayBuffer = await blob.arrayBuffer();
+                            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+                            loopSlots[activeSlot].audioBuffer = audioBuffer;
+                            loopSlots[activeSlot].duration = audioBuffer.duration;
+                        } catch (error) {
+                            console.error('Error decoding audio:', error);
+                        }
+                        
+                        updateSlotUI();
+                        document.getElementById('downloadBtn').style.display = 'block';
+                    };
+                    
+                    mediaRecorder.start();
+                    
+                    document.getElementById('recordBtn').textContent = 'recording...';
+                    document.getElementById('recordBtn').classList.add('active');
+                    document.getElementById('recStatus').textContent = 'on';
+                }
+                
                 sequencerInterval = setInterval(() => {
                     const steps = document.querySelectorAll('.step');
                     steps.forEach(s => s.classList.remove('playing'));
@@ -1989,8 +2028,19 @@
             isPlaying = false;
             currentStep = 0;
             document.querySelectorAll('.step').forEach(s => s.classList.remove('playing'));
-            document.getElementById('playSeq').textContent = 'play';
+            document.getElementById('playSeq').textContent = 'play+rec';
             document.getElementById('playSeq').classList.remove('active');
+            
+            // AUTO-STOP RECORDING when sequencer stops
+            if (isRecording) {
+                isRecording = false;
+                if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                    mediaRecorder.stop();
+                }
+                document.getElementById('recordBtn').textContent = 'rec manual';
+                document.getElementById('recordBtn').classList.remove('active');
+                document.getElementById('recStatus').textContent = 'off';
+            }
         }
 
         document.getElementById('clearSeq').addEventListener('click', () => {
@@ -2050,7 +2100,7 @@
                 if (mediaRecorder && mediaRecorder.state !== 'inactive') {
                     mediaRecorder.stop();
                 }
-                document.getElementById('recordBtn').textContent = 'rec';
+                document.getElementById('recordBtn').textContent = 'rec manual';
                 document.getElementById('recordBtn').classList.remove('active');
                 document.getElementById('recStatus').textContent = 'off';
             }
@@ -2095,7 +2145,7 @@
                 
                 mediaRecorder.start();
                 
-                document.getElementById('overdubBtn').textContent = 'overdubbing...';
+                document.getElementById('overdubBtn').textContent = 'layering...';
                 document.getElementById('overdubBtn').classList.add('active');
                 document.getElementById('recStatus').textContent = 'overdub';
             } else if (isOverdub) {
@@ -2103,7 +2153,7 @@
                 if (mediaRecorder && mediaRecorder.state !== 'inactive') {
                     mediaRecorder.stop();
                 }
-                document.getElementById('overdubBtn').textContent = 'overdub';
+                document.getElementById('overdubBtn').textContent = 'add layer';
                 document.getElementById('overdubBtn').classList.remove('active');
                 document.getElementById('recStatus').textContent = 'off';
             }
@@ -2562,17 +2612,17 @@
             document.getElementById('release').value = 300;
             document.getElementById('releaseVal').textContent = '300ms';
             
-            document.getElementById('reverb').value = 40;
-            document.getElementById('reverbVal').textContent = '40%';
-            if (window.reverbMix) window.reverbMix.gain.value = 0.4;
+            document.getElementById('reverb').value = 0;
+            document.getElementById('reverbVal').textContent = '0%';
+            if (window.reverbMix) window.reverbMix.gain.value = 0;
             
-            document.getElementById('delay').value = 20;
-            document.getElementById('delayVal').textContent = '20%';
-            if (window.delayMix) window.delayMix.gain.value = 0.2;
+            document.getElementById('delay').value = 0;
+            document.getElementById('delayVal').textContent = '0%';
+            if (window.delayMix) window.delayMix.gain.value = 0;
             
-            document.getElementById('filter').value = 8000;
-            document.getElementById('filterVal').textContent = '8000Hz';
-            if (window.filterNode) window.filterNode.frequency.value = 8000;
+            document.getElementById('filter').value = 10000;
+            document.getElementById('filterVal').textContent = '10000Hz';
+            if (window.filterNode) window.filterNode.frequency.value = 10000;
             
             document.getElementById('masterVol').value = 70;
             document.getElementById('masterVolVal').textContent = '70%';
