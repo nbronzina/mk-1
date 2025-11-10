@@ -149,7 +149,7 @@
             padding: 1.5rem;
             position: relative;
             overflow: hidden;
-            min-width: 0; /* Prevents overflow */
+            min-width: 0;
         }
 
         /* Grain texture on modules - FIJO */
@@ -688,7 +688,6 @@
         }
 
         @media (max-width: 768px) {
-            /* Header */
             .header {
                 padding: 1rem 1.5rem;
             }
@@ -697,7 +696,6 @@
                 font-size: 0.9rem;
             }
 
-            /* Hero */
             .hero h1 {
                 font-size: 1.5rem;
             }
@@ -712,12 +710,10 @@
                 padding: 0.7rem 1.2rem;
             }
 
-            /* Container */
             .container {
                 padding: 1.5rem 1rem;
             }
 
-            /* Modules */
             .module {
                 padding: 1rem;
             }
@@ -735,13 +731,11 @@
                 font-size: 0.6rem;
             }
 
-            /* Workspace */
             .workspace {
                 gap: 1rem;
                 margin-bottom: 1rem;
             }
 
-            /* Drum pads */
             .pad-grid {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 0.8rem;
@@ -757,7 +751,6 @@
                 right: 0.4rem;
             }
 
-            /* Keyboard */
             .keyboard {
                 height: 100px;
                 overflow-x: auto;
@@ -779,7 +772,6 @@
                 font-size: 0.6rem;
             }
 
-            /* Sequencer */
             .sequencer {
                 padding: 0.6rem;
             }
@@ -799,7 +791,6 @@
                 gap: 1.5px;
             }
 
-            /* Controls */
             .control-label {
                 font-size: 0.65rem;
             }
@@ -808,7 +799,6 @@
                 margin-bottom: 1rem;
             }
 
-            /* Buttons */
             .btn, .btn-secondary {
                 font-size: 0.7rem;
                 padding: 0.8rem;
@@ -818,13 +808,11 @@
                 gap: 0.4rem;
             }
 
-            /* Select */
             select {
                 font-size: 0.8rem;
                 padding: 0.7rem 0.9rem;
             }
 
-            /* Status bar */
             .status-bar {
                 padding: 0.8rem 1rem;
                 font-size: 0.65rem;
@@ -836,12 +824,10 @@
                 flex: 1 1 45%;
             }
 
-            /* Visualizer */
             .visualizer {
                 height: 50px !important;
             }
 
-            /* Info section */
             .info {
                 padding: 1.5rem;
             }
@@ -862,9 +848,7 @@
             }
         }
 
-        /* Mobile small screens */
         @media (max-width: 480px) {
-            /* Header */
             .header {
                 padding: 0.8rem 1rem;
             }
@@ -873,7 +857,6 @@
                 font-size: 0.8rem;
             }
 
-            /* Hero */
             .hero h1 {
                 font-size: 1.3rem;
             }
@@ -888,23 +871,19 @@
                 padding: 0.65rem 1rem;
             }
 
-            /* Container */
             .container {
                 padding: 1rem 0.8rem;
             }
 
-            /* Modules */
             .module {
                 padding: 0.8rem;
             }
 
-            /* Drum pads - 2 columns on very small screens */
             .pad-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 0.6rem;
             }
 
-            /* Keyboard */
             .keyboard {
                 height: 90px;
             }
@@ -918,7 +897,6 @@
                 min-width: 20px;
             }
 
-            /* Sequencer */
             .seq-row {
                 grid-template-columns: 35px 1fr;
             }
@@ -927,13 +905,11 @@
                 font-size: 0.5rem;
             }
 
-            /* Status bar */
             .status-bar {
                 padding: 0.7rem 0.8rem;
                 font-size: 0.6rem;
             }
 
-            /* Slot info */
             .module .btn-group {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -942,24 +918,20 @@
                 font-size: 0.65rem;
             }
 
-            /* Info section */
             .shortcuts-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Tablet specific */
         @media (min-width: 768px) and (max-width: 1024px) {
             .container {
                 padding: 2rem 1.5rem;
             }
 
-            /* Allow some 2-column layouts on tablet */
             .module-half {
                 grid-column: span 6;
             }
 
-            /* Drums can stay 2/3 on tablet */
             .workspace:first-of-type .module-twothird {
                 grid-column: span 8;
             }
@@ -969,14 +941,12 @@
             }
         }
 
-        /* Touch improvements for all mobile/tablet */
         @media (hover: none) and (pointer: coarse) {
             .pad, .key, .step, .btn, .btn-secondary, .slot-btn {
                 -webkit-tap-highlight-color: transparent;
                 touch-action: manipulation;
             }
 
-            /* Larger touch targets */
             .pad {
                 min-height: 60px;
             }
@@ -1025,7 +995,7 @@
             <div class="status-item">patterns: <span class="status-value" id="patternCount">0</span></div>
         </div>
 
-        <!-- Visualizer - top monitor (full width, thin) -->
+        <!-- Visualizer -->
         <div class="workspace">
             <div class="module module-full">
                 <div class="module-header">
@@ -1040,7 +1010,6 @@
 
         <!-- Main Grid - Drums + Pattern -->
         <div class="workspace">
-            <!-- Drums - main instrument -->
             <div class="module module-twothird">
                 <div class="module-header">
                     <div class="module-title">drums</div>
@@ -1082,7 +1051,6 @@
                 </div>
             </div>
 
-            <!-- Pattern - junto a drums -->
             <div class="module module-third">
                 <div class="module-header">
                     <div class="module-title">pattern</div>
@@ -1129,7 +1097,7 @@
             </div>
         </div>
 
-        <!-- Keys - full width (more space) -->
+        <!-- Keys -->
         <div class="workspace">
             <div class="module module-full">
                 <div class="module-header">
@@ -1184,26 +1152,34 @@
             </div>
         </div>
 
-        <!-- Tempo + FX + Loop (all controls together) -->
+        <!-- Vibe + FX/Tempo + Loop -->
         <div class="workspace">
             <div class="module module-third">
                 <div class="module-header">
-                    <div class="module-title">tempo</div>
-                    <div class="module-desc">adjust playback speed</div>
+                    <div class="module-title">vibe</div>
+                    <div class="module-desc">your music companion</div>
                 </div>
-                <div class="control-group">
-                    <div class="control-label">
-                        <span>bpm</span>
-                        <span class="control-value" id="tempoVal">120</span>
-                    </div>
-                    <input type="range" id="tempo" min="60" max="200" value="120">
+                <div style="display: flex; align-items: center; justify-content: center; min-height: 280px;">
+                    <svg id="vibeCircle" width="200" height="200" viewBox="0 0 200 200" style="max-width: 100%;">
+                        <circle id="vibeCircleMain" cx="100" cy="100" r="80" fill="none" stroke="#000" stroke-width="2"/>
+                        <circle id="vibeEyeLeft" cx="75" cy="85" r="4" fill="#000"/>
+                        <circle id="vibeEyeRight" cx="125" cy="85" r="4" fill="#000"/>
+                        <path id="vibeMouth" d="M 70 115 Q 100 125 130 115" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
                 </div>
             </div>
 
             <div class="module module-third">
                 <div class="module-header">
-                    <div class="module-title">fx</div>
-                    <div class="module-desc">add effects to your sound</div>
+                    <div class="module-title">fx + tempo</div>
+                    <div class="module-desc">shape your sound</div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>tempo</span>
+                        <span class="control-value" id="tempoVal">120</span>
+                    </div>
+                    <input type="range" id="tempo" min="60" max="200" value="120">
                 </div>
                 <div class="control-group">
                     <div class="control-label">
@@ -1234,7 +1210,6 @@
                     <div class="module-desc">record & layer up to 4 loops + mic input</div>
                 </div>
                 
-                <!-- Slot selector -->
                 <div class="btn-group" style="margin-bottom: 1rem;">
                     <button class="btn-secondary slot-btn active" data-slot="A">A</button>
                     <button class="btn-secondary slot-btn" data-slot="B">B</button>
@@ -1242,17 +1217,14 @@
                     <button class="btn-secondary slot-btn" data-slot="D">D</button>
                 </div>
                 
-                <!-- Mic control -->
                 <button class="btn-secondary" id="micBtn" style="margin-bottom: 1rem;">
                     <span class="mic-indicator" id="micIndicator"></span>mic
                 </button>
                 
-                <!-- Slot info -->
                 <div style="text-align: center; margin-bottom: 1rem; min-height: 1.2rem;">
                     <span style="font-size: 0.65rem; color: #999;" id="slotInfo">slot A · empty</span>
                 </div>
                 
-                <!-- Controls -->
                 <button class="btn-secondary" id="recordBtn">rec</button>
                 <button class="btn-secondary" id="overdubBtn" style="margin-top: 0.5rem;">overdub</button>
                 <button class="btn-secondary" id="playLoopBtn" style="margin-top: 0.5rem;">play</button>
@@ -1271,7 +1243,7 @@
             </div>
         </div>
 
-                <!-- Info -->
+        <!-- Info -->
         <div class="info">
             <h3>keys</h3>
             <div class="shortcuts-grid">
@@ -1351,13 +1323,11 @@
         let analyser;
         let isActive = false;
         
-        // Microphone system
         let micStream = null;
         let micSource = null;
         let micGain = null;
         let isMicActive = false;
         
-        // Loop slots system (inspired by Teenage Engineering)
         let loopSlots = {
             A: { loop: [], audioBlob: null, audioBuffer: null, duration: 0, isPlaying: false },
             B: { loop: [], audioBlob: null, audioBuffer: null, duration: 0, isPlaying: false },
@@ -1369,7 +1339,6 @@
         let recordingStart = 0;
         let isOverdub = false;
         
-        // Audio recording
         let mediaRecorder;
         let audioChunks = [];
         let mediaStreamDestination;
@@ -1403,7 +1372,89 @@
             'C5': 523.25
         };
 
-        // Init
+        // Vibe Circle Animation
+        let vibeCircle = document.getElementById('vibeCircleMain');
+        let vibeEyeLeft = document.getElementById('vibeEyeLeft');
+        let vibeEyeRight = document.getElementById('vibeEyeRight');
+        let vibeMouth = document.getElementById('vibeMouth');
+        let vibeBaseRadius = 80;
+        let vibeCurrentScale = 1;
+        let vibeTargetScale = 1;
+        let vibeMouthState = 'neutral'; // neutral, happy, excited
+
+        function animateVibe() {
+            requestAnimationFrame(animateVibe);
+            
+            if (!isActive || !analyser) {
+                // Sleeping state - closed eyes
+                vibeEyeLeft.setAttribute('ry', '1');
+                vibeEyeRight.setAttribute('ry', '1');
+                vibeCurrentScale = 1;
+                vibeCircle.setAttribute('r', vibeBaseRadius);
+                vibeMouth.setAttribute('d', 'M 75 115 Q 100 118 125 115');
+                return;
+            }
+            
+            // Get audio data
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+            analyser.getByteFrequencyData(dataArray);
+            
+            // Calculate average volume
+            let sum = 0;
+            for (let i = 0; i < bufferLength; i++) {
+                sum += dataArray[i];
+            }
+            const average = sum / bufferLength;
+            const normalizedVolume = average / 255; // 0 to 1
+            
+            // Animate based on volume
+            if (normalizedVolume > 0.02) { // Active sound
+                // Open eyes
+                vibeEyeLeft.setAttribute('ry', '4');
+                vibeEyeRight.setAttribute('ry', '4');
+                
+                // Scale circle based on volume
+                vibeTargetScale = 1 + (normalizedVolume * 0.15);
+                
+                // Change mouth expression
+                if (normalizedVolume > 0.15) {
+                    // Excited
+                    vibeMouth.setAttribute('d', 'M 70 110 Q 100 130 130 110');
+                } else if (normalizedVolume > 0.05) {
+                    // Happy
+                    vibeMouth.setAttribute('d', 'M 70 115 Q 100 125 130 115');
+                } else {
+                    // Subtle smile
+                    vibeMouth.setAttribute('d', 'M 75 115 Q 100 120 125 115');
+                }
+                
+                // Blink occasionally when excited
+                if (normalizedVolume > 0.2 && Math.random() > 0.98) {
+                    vibeEyeLeft.setAttribute('ry', '1');
+                    vibeEyeRight.setAttribute('ry', '1');
+                    setTimeout(() => {
+                        vibeEyeLeft.setAttribute('ry', '4');
+                        vibeEyeRight.setAttribute('ry', '4');
+                    }, 100);
+                }
+            } else {
+                // Idle state
+                vibeEyeLeft.setAttribute('ry', '4');
+                vibeEyeRight.setAttribute('ry', '4');
+                vibeTargetScale = 1;
+                vibeMouth.setAttribute('d', 'M 75 115 Q 100 118 125 115');
+            }
+            
+            // Smooth scaling
+            vibeCurrentScale += (vibeTargetScale - vibeCurrentScale) * 0.15;
+            const newRadius = vibeBaseRadius * vibeCurrentScale;
+            vibeCircle.setAttribute('r', newRadius);
+        }
+
+        // Start vibe animation
+        animateVibe();
+
         function initSystem() {
             if (!audioContext) {
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -1414,26 +1465,21 @@
                 analyser = audioContext.createAnalyser();
                 analyser.fftSize = 2048;
                 
-                // Create effects chain
-                // Delay
                 const delayNode = audioContext.createDelay();
                 delayNode.delayTime.value = 0.3;
                 const delayFeedback = audioContext.createGain();
                 delayFeedback.gain.value = 0.3;
                 const delayMix = audioContext.createGain();
-                delayMix.gain.value = 0.2; // 20% default
+                delayMix.gain.value = 0.2;
                 
-                // Connect delay feedback loop
                 delayNode.connect(delayFeedback);
                 delayFeedback.connect(delayNode);
                 delayNode.connect(delayMix);
                 
-                // Reverb (using convolver with impulse response)
                 const reverbNode = audioContext.createConvolver();
                 const reverbMix = audioContext.createGain();
-                reverbMix.gain.value = 0.4; // 40% default
+                reverbMix.gain.value = 0.4;
                 
-                // Create simple reverb impulse response
                 const reverbTime = 2;
                 const sampleRate = audioContext.sampleRate;
                 const length = sampleRate * reverbTime;
@@ -1449,15 +1495,11 @@
                 reverbNode.buffer = impulse;
                 reverbNode.connect(reverbMix);
                 
-                // Filter
                 const filterNode = audioContext.createBiquadFilter();
                 filterNode.type = 'lowpass';
                 filterNode.frequency.value = 8000;
                 filterNode.Q.value = 1;
                 
-                // Connect effects chain
-                // masterGain -> delay -> delayMix -> filterNode -> analyser -> destination
-                // masterGain -> reverb -> reverbMix -> filterNode
                 masterGain.connect(delayNode);
                 masterGain.connect(reverbNode);
                 masterGain.connect(filterNode);
@@ -1466,12 +1508,10 @@
                 filterNode.connect(analyser);
                 analyser.connect(audioContext.destination);
                 
-                // Store nodes globally for control
                 window.delayMix = delayMix;
                 window.reverbMix = reverbMix;
                 window.filterNode = filterNode;
                 
-                // Create media stream destination for recording
                 mediaStreamDestination = audioContext.createMediaStreamDestination();
                 analyser.connect(mediaStreamDestination);
                 
@@ -1492,7 +1532,6 @@
             }
         }
 
-        // Microphone functions
         async function toggleMic() {
             if (!audioContext) {
                 initSystem();
@@ -1501,7 +1540,6 @@
             }
             
             if (!isMicActive) {
-                // Request microphone access
                 try {
                     micStream = await navigator.mediaDevices.getUserMedia({ 
                         audio: {
@@ -1511,24 +1549,16 @@
                         } 
                     });
                     
-                    // Create audio source from microphone
                     micSource = audioContext.createMediaStreamSource(micStream);
-                    
-                    // Create gain node for mic
                     micGain = audioContext.createGain();
                     micGain.gain.value = 1.0;
-                    
-                    // Connect mic to master gain (goes through effects)
                     micSource.connect(micGain);
                     micGain.connect(masterGain);
                     
                     isMicActive = true;
-                    
-                    // Update UI
                     document.getElementById('micBtn').classList.add('active');
                     document.getElementById('micIndicator').classList.add('active');
                     
-                    // Show message
                     const heroP = document.querySelector('.hero p');
                     const originalText = heroP.textContent;
                     heroP.textContent = 'mic active · ready to capture external audio';
@@ -1541,7 +1571,6 @@
                     alert('Could not access microphone. Please check permissions.');
                 }
             } else {
-                // Stop microphone
                 if (micSource) {
                     micSource.disconnect();
                     micSource = null;
@@ -1556,12 +1585,9 @@
                 }
                 
                 isMicActive = false;
-                
-                // Update UI
                 document.getElementById('micBtn').classList.remove('active');
                 document.getElementById('micIndicator').classList.remove('active');
                 
-                // Show message
                 const heroP = document.querySelector('.hero p');
                 const originalText = heroP.textContent;
                 heroP.textContent = 'mic off';
@@ -1571,7 +1597,6 @@
             }
         }
 
-        // Drums - Enhanced realistic synthesis
         function playDrum(type, skipRecording = false) {
             if (!audioContext) {
                 initSystem();
@@ -1583,7 +1608,6 @@
                 audioContext.resume();
             }
             
-            // Visual feedback
             const pad = document.querySelector(`[data-sound="${type}"]`);
             if (pad) {
                 pad.classList.add('active');
@@ -1594,7 +1618,6 @@
             
             switch(type) {
                 case 'kick':
-                    // Realistic kick: pitch envelope + punch
                     const kickOsc = audioContext.createOscillator();
                     const kickGain = audioContext.createGain();
                     const kickFilter = audioContext.createBiquadFilter();
@@ -1620,18 +1643,15 @@
                     break;
                     
                 case 'snare':
-                    // Realistic snare: noise + tone
                     const snareOsc = audioContext.createOscillator();
                     const snareNoise = audioContext.createBufferSource();
                     const snareNoiseFilter = audioContext.createBiquadFilter();
                     const snareGain = audioContext.createGain();
                     const snareNoiseGain = audioContext.createGain();
                     
-                    // Tone component
                     snareOsc.type = 'triangle';
                     snareOsc.frequency.value = 180;
                     
-                    // Noise component
                     const noiseBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 0.2, audioContext.sampleRate);
                     const noiseData = noiseBuffer.getChannelData(0);
                     for (let i = 0; i < noiseBuffer.length; i++) {
@@ -1661,7 +1681,6 @@
                     break;
                     
                 case 'hihat':
-                    // Realistic hi-hat: filtered noise
                     const hihatNoise = audioContext.createBufferSource();
                     const hihatFilter = audioContext.createBiquadFilter();
                     const hihatGain = audioContext.createGain();
@@ -1688,7 +1707,6 @@
                     break;
                     
                 case 'clap':
-                    // Realistic clap: multiple noise bursts
                     for (let i = 0; i < 3; i++) {
                         const clapNoise = audioContext.createBufferSource();
                         const clapFilter = audioContext.createBiquadFilter();
@@ -1718,7 +1736,6 @@
                     break;
                     
                 case 'tom1':
-                    // Realistic tom: pitch envelope + resonance
                     const tomOsc = audioContext.createOscillator();
                     const tomGain = audioContext.createGain();
                     const tomFilter = audioContext.createBiquadFilter();
@@ -1743,7 +1760,6 @@
                     break;
                     
                 case 'perc':
-                    // Realistic perc: metallic tone
                     const percOsc1 = audioContext.createOscillator();
                     const percOsc2 = audioContext.createOscillator();
                     const percGain = audioContext.createGain();
@@ -1767,7 +1783,6 @@
                     break;
                     
                 case 'cymbal':
-                    // Realistic cymbal: complex filtered noise
                     const cymbalNoise = audioContext.createBufferSource();
                     const cymbalFilter1 = audioContext.createBiquadFilter();
                     const cymbalFilter2 = audioContext.createBiquadFilter();
@@ -1798,7 +1813,6 @@
                     break;
                     
                 case 'rim':
-                    // Realistic rimshot: short click
                     const rimOsc = audioContext.createOscillator();
                     const rimGain = audioContext.createGain();
                     const rimFilter = audioContext.createBiquadFilter();
@@ -1830,7 +1844,6 @@
             }
         }
 
-        // Synth
         function playNote(freq, skipRecording = false) {
             if (!audioContext) {
                 initSystem();
@@ -1842,7 +1855,6 @@
                 audioContext.resume();
             }
             
-            // Visual feedback - find the note that matches this frequency
             const noteEntry = Object.entries(notes).find(([key, f]) => f === freq);
             if (noteEntry) {
                 const [noteName] = noteEntry;
@@ -1884,22 +1896,16 @@
             }
         }
 
-        // Event Listeners
         document.getElementById('initBtn').addEventListener('click', initSystem);
-        
-        // Mic button
         document.getElementById('micBtn').addEventListener('click', toggleMic);
 
-        // Helper function for touch-friendly event listeners
         function addTouchClick(element, handler) {
             let touchHandled = false;
-            
             element.addEventListener('touchstart', function(e) {
                 e.preventDefault();
                 touchHandled = true;
                 handler.call(this, e);
             });
-            
             element.addEventListener('click', function(e) {
                 if (!touchHandled) {
                     handler.call(this, e);
@@ -1962,11 +1968,9 @@
                     const steps = document.querySelectorAll('.step');
                     steps.forEach(s => s.classList.remove('playing'));
                     
-                    // Highlight current step on all rows
                     const currentSteps = document.querySelectorAll(`.step[data-index="${currentStep}"]`);
                     currentSteps.forEach(s => s.classList.add('playing'));
                     
-                    // Play all active drums for this step
                     drums.forEach(drum => {
                         if (sequencerSteps[drum][currentStep]) {
                             playDrum(drum);
@@ -2005,17 +2009,14 @@
             }
             
             if (!isRecording) {
-                // Start recording (clears current slot)
                 isRecording = true;
                 isOverdub = false;
                 recordingStart = audioContext.currentTime;
                 loopSlots[activeSlot].loop = [];
                 audioChunks = [];
                 
-                // Hide download button
                 document.getElementById('downloadBtn').style.display = 'none';
                 
-                // Start MediaRecorder
                 mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
                 
                 mediaRecorder.ondataavailable = (event) => {
@@ -2026,7 +2027,6 @@
                     const blob = new Blob(audioChunks, { type: 'audio/webm' });
                     loopSlots[activeSlot].audioBlob = blob;
                     
-                    // Convert blob to AudioBuffer for playback
                     try {
                         const arrayBuffer = await blob.arrayBuffer();
                         const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
@@ -2037,7 +2037,6 @@
                     }
                     
                     updateSlotUI();
-                    // Show download button
                     document.getElementById('downloadBtn').style.display = 'block';
                 };
                 
@@ -2047,7 +2046,6 @@
                 document.getElementById('recordBtn').classList.add('active');
                 document.getElementById('recStatus').textContent = 'on';
             } else {
-                // Stop recording
                 isRecording = false;
                 if (mediaRecorder && mediaRecorder.state !== 'inactive') {
                     mediaRecorder.stop();
@@ -2058,7 +2056,6 @@
             }
         });
 
-        // Overdub button - records on top of existing loop
         document.getElementById('overdubBtn').addEventListener('click', () => {
             if (!audioContext) {
                 initSystem();
@@ -2067,15 +2064,12 @@
             }
             
             if (!isOverdub && !isRecording) {
-                // Start overdub (keeps existing loop)
                 isOverdub = true;
                 recordingStart = audioContext.currentTime;
                 audioChunks = [];
                 
-                // Hide download button
                 document.getElementById('downloadBtn').style.display = 'none';
                 
-                // Start MediaRecorder
                 mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
                 
                 mediaRecorder.ondataavailable = (event) => {
@@ -2086,7 +2080,6 @@
                     const blob = new Blob(audioChunks, { type: 'audio/webm' });
                     loopSlots[activeSlot].audioBlob = blob;
                     
-                    // Convert blob to AudioBuffer for playback
                     try {
                         const arrayBuffer = await blob.arrayBuffer();
                         const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
@@ -2106,7 +2099,6 @@
                 document.getElementById('overdubBtn').classList.add('active');
                 document.getElementById('recStatus').textContent = 'overdub';
             } else if (isOverdub) {
-                // Stop overdub
                 isOverdub = false;
                 if (mediaRecorder && mediaRecorder.state !== 'inactive') {
                     mediaRecorder.stop();
@@ -2126,7 +2118,6 @@
                 return;
             }
             
-            // Play recorded audio buffer if exists
             if (slot.audioBuffer) {
                 const source = audioContext.createBufferSource();
                 source.buffer = slot.audioBuffer;
@@ -2134,21 +2125,19 @@
                 source.start(0);
             }
             
-            // Play programmed events (drums/keys)
             if (slot.loop.length > 0) {
                 slot.loop.forEach(event => {
                     setTimeout(() => {
                         if (event.type === 'drum') {
-                            playDrum(event.sound, true); // skipRecording = true
+                            playDrum(event.sound, true);
                         } else if (event.type === 'synth') {
-                            playNote(event.freq, true); // skipRecording = true
+                            playNote(event.freq, true);
                         }
                     }, event.time * 1000);
                 });
             }
         });
 
-        // Play all slots simultaneously
         document.getElementById('playAllBtn').addEventListener('click', () => {
             if (!audioContext) {
                 initSystem();
@@ -2159,7 +2148,6 @@
             Object.keys(loopSlots).forEach(slotKey => {
                 const slot = loopSlots[slotKey];
                 
-                // Play recorded audio buffer if exists
                 if (slot.audioBuffer) {
                     const source = audioContext.createBufferSource();
                     source.buffer = slot.audioBuffer;
@@ -2167,14 +2155,13 @@
                     source.start(0);
                 }
                 
-                // Play programmed events (drums/keys)
                 if (slot.loop.length > 0) {
                     slot.loop.forEach(event => {
                         setTimeout(() => {
                             if (event.type === 'drum') {
-                                playDrum(event.sound, true); // skipRecording = true
+                                playDrum(event.sound, true);
                             } else if (event.type === 'synth') {
-                                playNote(event.freq, true); // skipRecording = true
+                                playNote(event.freq, true);
                             }
                         }, event.time * 1000);
                     });
@@ -2210,26 +2197,18 @@
             }, 100);
         });
 
-        // Slot selector buttons
         document.querySelectorAll('.slot-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                // Remove active class from all slots
                 document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
-                // Add active class to clicked slot
                 this.classList.add('active');
-                // Update active slot
                 activeSlot = this.dataset.slot;
-                // Update UI
                 updateSlotUI();
             });
         });
 
-        // Update slot UI (info text and indicators)
         function updateSlotUI() {
             const slot = loopSlots[activeSlot];
-            const hasContent = slot.loop.length > 0 || slot.audioBuffer !== null;
             
-            // Update slot info text
             let infoText;
             if (slot.audioBuffer) {
                 const duration = slot.duration.toFixed(1);
@@ -2241,7 +2220,6 @@
             }
             document.getElementById('slotInfo').textContent = infoText;
             
-            // Update slot button indicators
             document.querySelectorAll('.slot-btn').forEach(btn => {
                 const slotKey = btn.dataset.slot;
                 const slotHasContent = loopSlots[slotKey].loop.length > 0 || loopSlots[slotKey].audioBuffer !== null;
@@ -2252,7 +2230,6 @@
                 }
             });
             
-            // Show/hide download button
             if (slot.audioBlob) {
                 document.getElementById('downloadBtn').style.display = 'block';
             } else {
@@ -2278,7 +2255,6 @@
         document.getElementById('tempo').addEventListener('input', function() {
             document.getElementById('tempoVal').textContent = this.value;
             document.getElementById('tempoStatus').textContent = this.value;
-            // If sequencer is playing, restart with new tempo
             if (isPlaying) {
                 stopSequencer();
                 setTimeout(() => toggleSequencer(), 50);
@@ -2309,7 +2285,6 @@
             }
         });
 
-        // Keyboard
         const keyMap = {
             '1': 'kick', '2': 'snare', '3': 'hihat', '4': 'clap',
             '5': 'tom1', '6': 'perc', '7': 'cymbal', '8': 'rim',
@@ -2365,7 +2340,6 @@
                 return;
             }
             
-            // Slot selection
             if (key === 'q') {
                 document.querySelector('[data-slot="A"]').click();
                 return;
@@ -2404,7 +2378,6 @@
             }
         });
 
-        // Visualizer
         function drawViz() {
             if (!isActive || !analyser) {
                 requestAnimationFrame(drawViz);
@@ -2444,7 +2417,6 @@
             ctx.stroke();
         }
 
-        // Responsive canvas resize with debouncing
         let resizeTimeout;
         function resizeCanvas() {
             canvas.width = canvas.offsetWidth;
@@ -2456,12 +2428,10 @@
             resizeTimeout = setTimeout(resizeCanvas, 100);
         });
         
-        // Handle orientation change on mobile
         window.addEventListener('orientationchange', () => {
             setTimeout(resizeCanvas, 300);
         });
 
-        // Timestamp display
         function updateTimestamp() {
             const now = new Date();
             const date = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
@@ -2472,7 +2442,6 @@
         updateTimestamp();
         setInterval(updateTimestamp, 1000);
 
-        // Pattern counter
         function updatePatternCount() {
             let totalActive = 0;
             drums.forEach(drum => {
@@ -2482,13 +2451,11 @@
             document.getElementById('patternCount').textContent = totalActive > 0 ? 1 : 0;
         }
 
-        // Load Demo - creates a musical example
         document.getElementById('loadDemoBtn').addEventListener('click', () => {
             if (!audioContext) {
                 initSystem();
             }
             
-            // Clear everything first
             Object.keys(loopSlots).forEach(key => {
                 loopSlots[key].loop = [];
                 loopSlots[key].audioBlob = null;
@@ -2499,27 +2466,21 @@
                 sequencerSteps[drum] = Array(16).fill(false);
             });
             
-            // Load Pattern - Basic house beat
-            // Kick on 1, 5, 9, 13 (four on the floor)
             sequencerSteps.kick[0] = true;
             sequencerSteps.kick[4] = true;
             sequencerSteps.kick[8] = true;
             sequencerSteps.kick[12] = true;
             
-            // Snare on 4, 12 (backbeat)
             sequencerSteps.snare[4] = true;
             sequencerSteps.snare[12] = true;
             
-            // Hi-hat every other step (16th notes)
             for (let i = 0; i < 16; i += 2) {
                 sequencerSteps.hihat[i] = true;
             }
             
-            // Clap on 4, 12 (with snare)
             sequencerSteps.clap[4] = true;
             sequencerSteps.clap[12] = true;
             
-            // Update visual
             document.querySelectorAll('.step').forEach(step => {
                 const drum = step.dataset.drum;
                 const index = parseInt(step.dataset.index);
@@ -2530,12 +2491,10 @@
                 }
             });
             
-            // Load Loop A - Simple melody
             activeSlot = 'A';
             document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
             document.querySelector('[data-slot="A"]').classList.add('active');
             
-            // Create a simple melodic loop (C major scale)
             loopSlots.A.loop = [
                 { type: 'synth', freq: notes.C4, wave: 'sine', time: 0 },
                 { type: 'synth', freq: notes.E4, wave: 'sine', time: 0.5 },
@@ -2546,19 +2505,14 @@
                 { type: 'synth', freq: notes.C4, wave: 'sine', time: 3.0 }
             ];
             
-            // Set tempo to 120 (default)
             document.getElementById('tempo').value = 120;
             document.getElementById('tempoVal').textContent = '120';
             document.getElementById('tempoStatus').textContent = '120';
-            
-            // Set wave to sine for melodic sound
             document.getElementById('waveType').value = 'sine';
             
-            // Update UI
             updatePatternCount();
             updateSlotUI();
             
-            // Show message
             const heroP = document.querySelector('.hero p');
             const originalText = heroP.textContent;
             heroP.textContent = 'demo loaded! hit space to hear it';
@@ -2567,14 +2521,11 @@
             }, 4000);
         });
 
-        // Clear All - resets everything to initial state
         document.getElementById('clearAllBtn').addEventListener('click', () => {
-            // Turn off mic if active
             if (isMicActive) {
                 toggleMic();
             }
             
-            // Clear all loop slots
             Object.keys(loopSlots).forEach(key => {
                 loopSlots[key].loop = [];
                 loopSlots[key].audioBlob = null;
@@ -2583,27 +2534,22 @@
                 loopSlots[key].isPlaying = false;
             });
             
-            // Clear all sequencer patterns
             drums.forEach(drum => {
                 sequencerSteps[drum] = Array(16).fill(false);
             });
             
-            // Update visual for sequencer
             document.querySelectorAll('.step').forEach(step => {
                 step.classList.remove('active');
             });
             
-            // Stop sequencer if playing
             if (isPlaying) {
                 stopSequencer();
             }
             
-            // Reset to slot A
             activeSlot = 'A';
             document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
             document.querySelector('[data-slot="A"]').classList.add('active');
             
-            // Reset controls to defaults
             document.getElementById('tempo').value = 120;
             document.getElementById('tempoVal').textContent = '120';
             document.getElementById('tempoStatus').textContent = '120';
@@ -2632,14 +2578,11 @@
             document.getElementById('masterVolVal').textContent = '70%';
             if (masterGain) masterGain.gain.value = 0.7;
             
-            // Hide download button
             document.getElementById('downloadBtn').style.display = 'none';
             
-            // Update UI
             updatePatternCount();
             updateSlotUI();
             
-            // Show message
             const heroP = document.querySelector('.hero p');
             const originalText = heroP.textContent;
             heroP.textContent = 'all clear! start creating';
