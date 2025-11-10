@@ -34,10 +34,60 @@
             box-sizing: border-box;
         }
 
+        :root {
+            /* Light mode (default) */
+            --bg-primary: #f2f2f0;
+            --bg-secondary: #fefefe;
+            --bg-tertiary: #fafafa;
+            --bg-input: #0f0f0f;
+            --border-primary: #e0e0e0;
+            --border-secondary: #2a2a2a;
+            --text-primary: #000;
+            --text-secondary: #666;
+            --text-tertiary: #999;
+            --text-invert: #fff;
+            --accent-primary: #000;
+            --accent-secondary: #e0e0e0;
+            --hover-primary: #f0f0f0;
+            --hover-secondary: #ccc;
+            --active-bg: #000;
+            --active-text: #fff;
+            --key-black: #000;
+            --key-white: #fefefe;
+            --step-playing: #666;
+            --viz-bg: #fafafa;
+            --viz-line: #000;
+        }
+
+        :root.dark-mode {
+            /* Dark mode */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-tertiary: #0f0f0f;
+            --bg-input: #0f0f0f;
+            --border-primary: #2a2a2a;
+            --border-secondary: #444;
+            --text-primary: #e0e0e0;
+            --text-secondary: #999;
+            --text-tertiary: #666;
+            --text-invert: #000;
+            --accent-primary: #e0e0e0;
+            --accent-secondary: #2a2a2a;
+            --hover-primary: #1a1a1a;
+            --hover-secondary: #444;
+            --active-bg: #e0e0e0;
+            --active-text: #000;
+            --key-black: #e0e0e0;
+            --key-white: #1a1a1a;
+            --step-playing: #999;
+            --viz-bg: #0a0a0a;
+            --viz-line: #e0e0e0;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Arial', sans-serif;
-            background: #f2f2f0;
-            color: #000;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
             position: relative;
             overscroll-behavior: none;
@@ -72,13 +122,16 @@
         }
 
         .header {
-            background: #fefefe;
-            border-bottom: 1px solid #e0e0e0;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-primary);
             padding: 1.5rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
             overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .header::after {
@@ -123,7 +176,7 @@
 
         .hero p {
             font-size: 0.85rem;
-            color: #999;
+            color: var(--text-tertiary);
             font-weight: 300;
             transition: all 0.3s ease;
         }
@@ -144,8 +197,8 @@
         }
 
         .module {
-            background: #fefefe;
-            border: 1px solid #e0e0e0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
             padding: 1.5rem;
             position: relative;
             overflow: hidden;
@@ -179,7 +232,7 @@
         .module-header {
             margin-bottom: 1rem;
             padding-bottom: 0.8rem;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #2a2a2a;
         }
 
         .module-title {
@@ -187,7 +240,7 @@
             font-weight: 500;
             letter-spacing: 0.08em;
             text-transform: lowercase;
-            color: #999;
+            color: var(--text-tertiary);
         }
 
         .module-desc {
@@ -207,7 +260,7 @@
         /* Visualizer */
         .visualizer {
             height: 60px;
-            background: #fafafa;
+            background: var(--viz-bg);
             position: relative;
             overflow: hidden;
         }
@@ -239,8 +292,8 @@
 
         .pad {
             aspect-ratio: 1;
-            background: #fafafa;
-            border: 1px solid #e0e0e0;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -272,7 +325,7 @@
             font-weight: 400;
             text-transform: lowercase;
             letter-spacing: 0.03em;
-            color: #666;
+            color: var(--text-tertiary);
             position: relative;
             z-index: 2;
         }
@@ -282,27 +335,27 @@
             top: 0.5rem;
             right: 0.5rem;
             font-size: 0.65rem;
-            color: #ccc;
+            color: var(--text-tertiary);
             font-weight: 600;
             z-index: 2;
         }
 
         .pad:hover {
-            background: #f0f0f0;
-            border-color: #ccc;
+            background: var(--hover-primary);
+            border-color: var(--border-secondary);
         }
 
         .pad.active {
-            background: #000;
-            border-color: #000;
+            background: var(--active-bg);
+            border-color: var(--active-bg);
         }
 
         .pad.active .pad-label {
-            color: #fff;
+            color: var(--active-text);
         }
 
         .pad.active .pad-key {
-            color: #666;
+            color: var(--text-secondary);
         }
 
         /* Keyboard */
@@ -310,14 +363,14 @@
             display: flex;
             gap: 1px;
             height: 140px;
-            background: #e0e0e0;
+            background: var(--border-primary);
             padding: 1px;
             position: relative;
         }
 
         .key {
             flex: 1;
-            background: #fefefe;
+            background: var(--hover-primary);
             cursor: pointer;
             transition: all 0.05s ease;
             position: relative;
@@ -332,12 +385,12 @@
         .key-label {
             font-size: 0.65rem;
             font-weight: 500;
-            color: #999;
+            color: var(--text-secondary);
             text-transform: lowercase;
         }
 
         .key.black {
-            background: #000;
+            background: var(--active-bg);
             height: 90px;
             margin: 0 -12px;
             z-index: 2;
@@ -345,15 +398,15 @@
         }
 
         .key.black .key-label {
-            color: #666;
+            color: var(--text-tertiary);
         }
 
         .key:active, .key.active {
-            background: #e0e0e0;
+            background: var(--border-primary);
         }
 
         .key.black:active, .key.black.active {
-            background: #333;
+            background: var(--hover-secondary);
         }
 
         /* Controls */
@@ -369,11 +422,11 @@
             font-weight: 400;
             text-transform: lowercase;
             letter-spacing: 0.03em;
-            color: #999;
+            color: var(--text-tertiary);
         }
 
         .control-value {
-            color: #000;
+            color: var(--text-primary);
             font-weight: 600;
             min-width: 50px;
             text-align: right;
@@ -383,7 +436,7 @@
         input[type="range"] {
             width: 100%;
             height: 2px;
-            background: #e0e0e0;
+            background: var(--border-primary);
             outline: none;
             -webkit-appearance: none;
             cursor: pointer;
@@ -393,14 +446,14 @@
             -webkit-appearance: none;
             width: 16px;
             height: 16px;
-            background: #000;
+            background: var(--active-bg);
             border-radius: 50%;
         }
 
         input[type="range"]::-moz-range-thumb {
             width: 16px;
             height: 16px;
-            background: #000;
+            background: var(--active-bg);
             border-radius: 50%;
             border: none;
         }
@@ -408,14 +461,15 @@
         select {
             width: 100%;
             padding: 0.8rem 1rem;
-            background: #fafafa;
-            border: 1px solid #e0e0e0;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            color: var(--text-primary);
             font-family: inherit;
             font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23666' stroke-width='1.5'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23999' stroke-width='1.5'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 1rem center;
             padding-right: 2.5rem;
@@ -423,16 +477,16 @@
 
         select:focus {
             outline: none;
-            border-color: #999;
+            border-color: var(--border-secondary);
         }
 
         /* Buttons */
         .btn {
             width: 100%;
             padding: 1rem;
-            background: #000;
+            background: var(--active-bg);
             border: none;
-            color: #fff;
+            color: var(--active-text);
             font-family: inherit;
             font-size: 0.75rem;
             font-weight: 500;
@@ -446,32 +500,32 @@
         }
 
         .btn:hover {
-            background: #333;
+            background: var(--hover-secondary);
         }
 
         .btn:active {
-            background: #000;
+            background: var(--active-bg);
             transform: scale(0.98);
         }
 
         .btn-secondary {
-            background: #fefefe;
-            color: #000;
-            border: 1px solid #e0e0e0;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-primary);
             user-select: none;
             -webkit-user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
 
         .btn-secondary:hover {
-            background: #fafafa;
-            border-color: #ccc;
+            background: var(--hover-primary);
+            border-color: var(--border-secondary);
         }
 
         .btn-secondary.active {
-            background: #000;
-            color: #fff;
-            border-color: #000;
+            background: var(--active-bg);
+            color: var(--active-text);
+            border-color: var(--text-primary);
         }
 
         .slot-btn {
@@ -485,12 +539,12 @@
             right: 0.3rem;
             width: 5px;
             height: 5px;
-            background: #666;
+            background: #999;
             border-radius: 50%;
         }
 
         .slot-btn.has-content.active::after {
-            background: #fff;
+            background: #000;
         }
 
         .btn-group {
@@ -523,7 +577,7 @@
 
         /* Sequencer */
         .sequencer {
-            background: #fafafa;
+            background: var(--viz-bg);
             padding: 0.8rem;
         }
 
@@ -543,7 +597,7 @@
             font-size: 0.6rem;
             font-weight: 500;
             text-transform: lowercase;
-            color: #999;
+            color: var(--text-tertiary);
             text-align: right;
             padding-right: 6px;
         }
@@ -556,8 +610,8 @@
 
         .step {
             aspect-ratio: 1;
-            background: #fefefe;
-            border: 1px solid #e0e0e0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
             cursor: pointer;
             transition: all 0.1s ease;
             user-select: none;
@@ -566,23 +620,23 @@
         }
 
         .step:hover {
-            background: #f5f5f5;
+            background: var(--hover-primary);
         }
 
         .step.active {
-            background: #000;
-            border-color: #000;
+            background: var(--active-bg);
+            border-color: var(--text-primary);
         }
 
         .step.playing {
-            background: #666;
-            border-color: #666;
+            background: #999;
+            border-color: var(--text-tertiary);
         }
 
         /* Status Bar */
         .status-bar {
-            background: #fefefe;
-            border: 1px solid #e0e0e0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
             padding: 1rem 1.5rem;
             display: flex;
             justify-content: space-between;
@@ -610,20 +664,20 @@
         }
 
         .status-item {
-            color: #999;
+            color: var(--text-tertiary);
             position: relative;
             z-index: 2;
         }
 
         .status-value {
-            color: #000;
+            color: var(--text-primary);
             margin-left: 0.5rem;
         }
 
         /* Info */
         .info {
-            background: #fefefe;
-            border: 1px solid #e0e0e0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
             padding: 2rem;
             margin-top: 3rem;
             position: relative;
@@ -648,7 +702,7 @@
             font-weight: 500;
             text-transform: lowercase;
             letter-spacing: 0.08em;
-            color: #999;
+            color: var(--text-tertiary);
             margin-bottom: 1rem;
             position: relative;
             z-index: 2;
@@ -669,8 +723,8 @@
         }
 
         .shortcut-key {
-            background: #fafafa;
-            border: 1px solid #e0e0e0;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
             padding: 0.3rem 0.6rem;
             font-weight: 500;
             min-width: 50px;
@@ -680,7 +734,7 @@
         }
 
         .shortcut-desc {
-            color: #666;
+            color: var(--text-tertiary);
         }
 
         /* Responsive */
@@ -977,8 +1031,13 @@
 </head>
 <body>
     <div class="header">
-        <div class="brand">playground mk-1</div>
-        <div style="font-size: 0.7rem; color: #999; font-weight: 400; margin-top: 0.3rem;" id="timestamp"></div>
+        <div>
+            <div class="brand">playground mk-1</div>
+            <div style="font-size: 0.7rem; color: var(--text-tertiary); font-weight: 400; margin-top: 0.3rem;" id="timestamp"></div>
+        </div>
+        <button id="themeToggle" style="background: none; border: 1px solid var(--border-primary); color: var(--text-primary); padding: 0.5rem 0.8rem; cursor: pointer; font-size: 0.7rem; font-weight: 500; text-transform: lowercase; letter-spacing: 0.05em; transition: all 0.15s ease;">
+            <span id="themeIcon">◐</span>
+        </button>
     </div>
 
     <div class="container">
@@ -1163,11 +1222,11 @@
                     <div class="module-desc">your music companion</div>
                 </div>
                 <div style="display: flex; align-items: center; justify-content: center; min-height: 280px;">
-                    <svg id="vibeCircle" width="200" height="200" viewBox="0 0 200 200" style="max-width: 100%;">
-                        <circle id="vibeCircleMain" cx="100" cy="100" r="80" fill="none" stroke="#000" stroke-width="2"/>
-                        <circle id="vibeEyeLeft" cx="75" cy="85" r="4" fill="#000"/>
-                        <circle id="vibeEyeRight" cx="125" cy="85" r="4" fill="#000"/>
-                        <path id="vibeMouth" d="M 70 115 Q 100 125 130 115" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+                    <svg id="vibeCircle" width="200" height="200" viewBox="0 0 200 200" style="max-width: 100%; cursor: pointer;">
+                        <circle id="vibeCircleMain" cx="100" cy="100" r="80" fill="none" stroke="var(--text-primary)" stroke-width="2"/>
+                        <circle id="vibeEyeLeft" cx="75" cy="85" r="4" fill="var(--text-primary)"/>
+                        <circle id="vibeEyeRight" cx="125" cy="85" r="4" fill="var(--text-primary)"/>
+                        <path id="vibeMouth" d="M 70 115 Q 100 125 130 115" fill="none" stroke="var(--text-primary)" stroke-width="2" stroke-linecap="round"/>
                     </svg>
                 </div>
             </div>
@@ -1225,7 +1284,7 @@
                 </button>
                 
                 <div style="text-align: center; margin-bottom: 1rem; min-height: 1.2rem;">
-                    <span style="font-size: 0.65rem; color: #999;" id="slotInfo">slot A · empty</span>
+                    <span style="font-size: 0.65rem; color: var(--text-tertiary);" id="slotInfo">slot A · empty</span>
                 </div>
                 
                 <button class="btn-secondary" id="recordBtn">rec manual</button>
@@ -1314,8 +1373,8 @@
         </div>
 
         <!-- Credit -->
-        <div style="text-align: center; padding: 2rem; font-size: 0.7rem; color: #999;">
-            designed, coded & built by <a href="https://nicolasbronzina.com" target="_blank" style="color: #666; text-decoration: none; border-bottom: 1px solid #e0e0e0;">nicolás bronzina</a>
+        <div style="text-align: center; padding: 2rem; font-size: 0.7rem; color: var(--text-tertiary);">
+            designed, coded & built by <a href="https://nicolasbronzina.com" target="_blank" style="color: var(--text-tertiary); text-decoration: none; border-bottom: 1px solid #2a2a2a;">nicolás bronzina</a>
         </div>
     </div>
 
@@ -1384,9 +1443,127 @@
         let vibeCurrentScale = 1;
         let vibeTargetScale = 1;
         let vibeMouthState = 'neutral'; // neutral, happy, excited
+        let vibeIsDoingTrick = false; // Flag to pause audio reactions during tricks
+        let lastVibeExpression = null; // Track last expression to avoid repeats
+
+        // Click reactions - abstract/experimental expressions
+        const vibeExpressions = [
+            {
+                name: 'glitch',
+                eyes: () => {
+                    vibeEyeLeft.setAttribute('cx', '65');
+                    vibeEyeLeft.setAttribute('cy', '75');
+                    vibeEyeRight.setAttribute('cx', '135');
+                    vibeEyeRight.setAttribute('cy', '95');
+                    vibeEyeLeft.setAttribute('r', '2');
+                    vibeEyeRight.setAttribute('r', '6');
+                },
+                mouth: 'M 60 115 L 70 120 L 80 115 L 90 125 L 100 115 L 110 120 L 120 115 L 130 125 L 140 115' // Glitchy zigzag
+            },
+            {
+                name: 'melt',
+                eyes: () => {
+                    vibeEyeLeft.setAttribute('cy', '95');
+                    vibeEyeRight.setAttribute('cy', '95');
+                    vibeEyeLeft.setAttribute('ry', '8');
+                    vibeEyeRight.setAttribute('ry', '8');
+                    vibeEyeLeft.setAttribute('r', '3');
+                    vibeEyeRight.setAttribute('r', '3');
+                },
+                mouth: 'M 70 130 Q 100 135 130 130' // Melting down
+            },
+            {
+                name: 'zen',
+                eyes: () => {
+                    vibeEyeLeft.setAttribute('r', '1');
+                    vibeEyeRight.setAttribute('r', '1');
+                },
+                mouth: 'M 80 115 L 120 115' // Flat line
+            },
+            {
+                name: 'vibrate',
+                eyes: () => {
+                    vibeEyeLeft.setAttribute('cx', '73');
+                    vibeEyeLeft.setAttribute('cy', '83');
+                    vibeEyeRight.setAttribute('cx', '127');
+                    vibeEyeRight.setAttribute('cy', '87');
+                    vibeEyeLeft.setAttribute('r', '5');
+                    vibeEyeRight.setAttribute('r', '5');
+                },
+                mouth: 'M 68 115 Q 75 120 82 115 Q 90 110 98 115 Q 106 120 114 115 Q 122 110 130 115' // Wavy energy
+            },
+            {
+                name: 'flip',
+                eyes: () => {
+                    vibeEyeLeft.setAttribute('cy', '115');
+                    vibeEyeRight.setAttribute('cy', '115');
+                    vibeEyeLeft.setAttribute('r', '4');
+                    vibeEyeRight.setAttribute('r', '4');
+                },
+                mouth: 'M 70 85 Q 100 75 130 85' // Upside down
+            },
+            {
+                name: 'spiral',
+                eyes: () => {
+                    vibeEyeLeft.setAttribute('cx', '70');
+                    vibeEyeLeft.setAttribute('cy', '80');
+                    vibeEyeRight.setAttribute('cx', '130');
+                    vibeEyeRight.setAttribute('cy', '90');
+                    vibeEyeLeft.setAttribute('r', '2');
+                    vibeEyeRight.setAttribute('r', '7');
+                },
+                mouth: 'M 100 115 Q 110 120 115 115 Q 118 108 112 105' // Swirl
+            }
+        ];
+
+        function doRandomVibeTrick() {
+            if (vibeIsDoingTrick) return; // Don't interrupt current trick
+            
+            vibeIsDoingTrick = true;
+            
+            // Filter out last expression to avoid repeats
+            let availableExpressions = vibeExpressions;
+            if (lastVibeExpression !== null) {
+                availableExpressions = vibeExpressions.filter((expr, index) => index !== lastVibeExpression);
+            }
+            
+            // Pick random expression from available ones
+            const randomIndex = Math.floor(Math.random() * availableExpressions.length);
+            const expression = availableExpressions[randomIndex];
+            
+            // Remember this expression to avoid repeating it next time
+            lastVibeExpression = vibeExpressions.indexOf(expression);
+            
+            // Apply expression
+            expression.eyes();
+            vibeMouth.setAttribute('d', expression.mouth);
+            
+            // Return to normal after 2 seconds
+            setTimeout(() => {
+                vibeIsDoingTrick = false;
+                // Reset to default positions
+                vibeEyeLeft.setAttribute('cx', '75');
+                vibeEyeLeft.setAttribute('cy', '85');
+                vibeEyeLeft.setAttribute('r', '4');
+                vibeEyeLeft.setAttribute('ry', '4');
+                vibeEyeRight.setAttribute('cx', '125');
+                vibeEyeRight.setAttribute('cy', '85');
+                vibeEyeRight.setAttribute('r', '4');
+                vibeEyeRight.setAttribute('ry', '4');
+                vibeMouth.setAttribute('d', 'M 70 115 Q 100 125 130 115');
+            }, 2000);
+        }
+
+        // Add click listener to vibe circle
+        document.getElementById('vibeCircle').addEventListener('click', doRandomVibeTrick);
 
         function animateVibe() {
             requestAnimationFrame(animateVibe);
+            
+            // Don't animate if user is doing a trick
+            if (vibeIsDoingTrick) {
+                return;
+            }
             
             if (!isActive || !analyser) {
                 // Sleeping state - closed eyes
@@ -2443,11 +2620,15 @@
             const dataArray = new Uint8Array(bufferLength);
             analyser.getByteTimeDomainData(dataArray);
             
-            ctx.fillStyle = '#fafafa';
+            // Get colors from CSS variables
+            const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--viz-bg').trim();
+            const lineColor = getComputedStyle(document.documentElement).getPropertyValue('--viz-line').trim();
+            
+            ctx.fillStyle = bgColor;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             ctx.lineWidth = 2;
-            ctx.strokeStyle = '#000';
+            ctx.strokeStyle = lineColor;
             ctx.beginPath();
             
             const sliceWidth = canvas.width / bufferLength;
@@ -2642,6 +2823,14 @@
             setTimeout(() => {
                 heroP.textContent = originalText;
             }, 3000);
+        });
+
+        // Theme Toggle - Always starts in light mode
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark-mode');
         });
     </script>
 </body>
