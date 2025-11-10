@@ -1011,7 +1011,7 @@
     <div class="container">
         <div class="hero">
             <h1>create · loop · play</h1>
-            <p>press enter to start</p>
+            <p>try the demo or just start creating</p>
             <div style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem;">
                 <button class="btn" id="loadDemoBtn" style="max-width: 150px;">load demo</button>
                 <button class="btn-secondary" id="clearAllBtn" style="max-width: 150px; padding: 0.8rem 1.5rem; font-size: 0.7rem;">clear all</button>
@@ -2561,7 +2561,7 @@
             // Show message
             const heroP = document.querySelector('.hero p');
             const originalText = heroP.textContent;
-            heroP.textContent = 'demo loaded! press space to play pattern or P to play loop';
+            heroP.textContent = 'demo loaded! hit space to hear it';
             setTimeout(() => {
                 heroP.textContent = originalText;
             }, 4000);
@@ -2642,7 +2642,7 @@
             // Show message
             const heroP = document.querySelector('.hero p');
             const originalText = heroP.textContent;
-            heroP.textContent = 'everything cleared! ready to create';
+            heroP.textContent = 'all clear! start creating';
             setTimeout(() => {
                 heroP.textContent = originalText;
             }, 3000);
