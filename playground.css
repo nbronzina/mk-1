@@ -1,5 +1,5 @@
 /* ============================================
-   PLAYGROUND INDEX STYLES
+   PLAYGROUND INDEX STYLES - OPTIMIZED
    Landing page for playground releases
    ============================================ */
 
@@ -10,10 +10,10 @@
 
 .about-card pre {
     background: var(--bg-tertiary);
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 2px;
-    font-size: 0.75rem;
-    line-height: 1.6;
+    font-size: 0.85rem;
+    line-height: 1.8;
     overflow-x: auto;
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -81,14 +81,39 @@
 }
 
 .release-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     border-color: var(--border-secondary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.release-card:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
 }
 
 .release-card.disabled {
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: 0.5;
+    filter: grayscale(0.3);
+    position: relative;
+}
+
+.release-card.disabled::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(0,0,0,0.02) 10px,
+        rgba(0,0,0,0.02) 20px
+    );
+    z-index: 3;
+    pointer-events: none;
 }
 
 .release-card.disabled:hover {
@@ -107,8 +132,8 @@
 }
 
 .release-title {
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 1.1rem;
+    font-weight: 600;
     text-transform: lowercase;
     letter-spacing: 0.05em;
     color: var(--text-primary);
@@ -117,9 +142,9 @@
 
 /* === RELEASE DESCRIPTION === */
 .release-description {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
-    line-height: 1.5;
+    line-height: 1.6;
     margin-bottom: 1rem;
 }
 
@@ -132,10 +157,11 @@
 }
 
 .release-tag {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     color: var(--text-tertiary);
     background: var(--bg-tertiary);
-    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--border-primary);
+    padding: 0.35rem 0.7rem;
     border-radius: 2px;
     text-transform: lowercase;
 }
@@ -165,20 +191,26 @@
 /* === SUPPORT SECTION === */
 .support-card pre {
     background: var(--bg-tertiary);
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 2px;
-    font-size: 0.75rem;
-    line-height: 1.6;
+    font-size: 0.85rem;
+    line-height: 1.8;
 }
 
 .support-card a {
     color: var(--text-primary);
     text-decoration: none;
     border-bottom: 1px solid var(--border-secondary);
+    transition: color 0.2s ease;
 }
 
 .support-card a:hover {
     color: var(--text-secondary);
+}
+
+.support-card a:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
 }
 
 /* === NOMENCLATURE SECTION === */
@@ -212,16 +244,18 @@
 
 /* === SECTION SPACING === */
 .section {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
 }
 
 .section-title {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: lowercase;
     color: var(--text-tertiary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-primary);
 }
 
 /* === FULL WIDTH CARD === */
@@ -242,15 +276,30 @@
     }
 
     .release-title {
-        font-size: 0.85rem;
+        font-size: 1rem;
     }
 
     .release-description {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
     }
 
     .section {
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .section-title {
+        font-size: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .about-card pre {
+        font-size: 0.8rem;
+        padding: 1.2rem;
+    }
+
+    .support-card pre {
+        font-size: 0.8rem;
+        padding: 1.2rem;
     }
 }
 
@@ -262,5 +311,13 @@
 
     .release-card {
         padding: 0.8rem;
+    }
+
+    .release-title {
+        font-size: 0.95rem;
+    }
+
+    .section {
+        margin-bottom: 2.5rem;
     }
 }
