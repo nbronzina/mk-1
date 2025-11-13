@@ -9,11 +9,15 @@
     grid-template-columns: repeat(12, 1fr);
     gap: 1.5rem;
     margin-bottom: 1.5rem;
+    align-items: start;
 }
 
 .module-full { grid-column: span 12; }
 .module-half { grid-column: span 6; }
-.module-third { grid-column: span 4; }
+.module-third { 
+    grid-column: span 4;
+    min-height: 520px;
+}
 .module-twothird { grid-column: span 8; }
 
 /* === VISUALIZER === */
@@ -422,6 +426,10 @@ select:focus {
 @media (max-width: 1024px) {
     .module-half, .module-third, .module-twothird {
         grid-column: span 12;
+    }
+    
+    .module-third {
+        min-height: auto;
     }
 }
 
