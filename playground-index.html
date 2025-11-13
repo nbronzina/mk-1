@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>playground · tools for sonic experimentation</title>
+    <meta name="description" content="A series of experimental music tools. No manuals. No friction. Just play.">
+    
+    <!-- Favicon SVG -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f2f2f0'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='14' font-weight='600' text-anchor='middle' fill='%23000'%3Epg%3C/text%3E%3C/svg%3E">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nicolasbronzina.com/">
+    <meta property="og:title" content="playground · tools for sonic experimentation">
+    <meta property="og:description" content="A series of experimental music tools. No manuals. No friction. Just play.">
+    <meta property="og:image" content="https://nicolasbronzina.com/img/playground-og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://nicolasbronzina.com/">
+    <meta name="twitter:title" content="playground · tools for sonic experimentation">
+    <meta name="twitter:description" content="A series of experimental music tools. No manuals. No friction. Just play.">
+    <meta name="twitter:image" content="https://nicolasbronzina.com/img/playground-og.png">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%23f2f2f0'/%3E%3Ctext x='90' y='120' font-family='monospace' font-size='80' font-weight='600' text-anchor='middle' fill='%23000'%3Epg%3C/text%3E%3C/svg%3E">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="playground-core.css">
+    <link rel="stylesheet" href="playground.css">
+</head>
+<body>
+    <div class="header">
+        <div>
+            <div class="brand">playground</div>
+            <div style="font-size: 0.7rem; color: var(--text-tertiary); font-weight: 400; margin-top: 0.3rem;" id="timestamp"></div>
+        </div>
+        <div style="display: flex; gap: 0.5rem; position: relative; z-index: 2;">
+            <button id="themeToggle" style="background: none; border: 1px solid var(--border-primary); color: var(--text-primary); padding: 0.5rem 0.8rem; cursor: pointer; font-size: 0.7rem; font-weight: 500; text-transform: lowercase; letter-spacing: 0.05em; transition: all 0.15s ease;">
+                <span id="themeIcon">◐</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <h1>playground</h1>
+            <p>tools for sonic experimentation</p>
+        </div>
+
+        <!-- About -->
+        <div class="section">
+            <div class="card card-full about-card">
+                <div class="card-header">
+                    <div class="card-title">what is playground?</div>
+                </div>
+                <pre>a series of experimental music tools.
+no manuals. no friction. just play.
+
+each release follows industrial design nomenclature:
+mk-1, mk-2, mk-3...
+
+if a beginner needs more than 5 seconds to understand it,
+it doesn't belong here.</pre>
+                
+                <div style="margin-top: 1.5rem;">
+                    <strong style="font-size: 0.75rem; color: var(--text-primary);">values:</strong>
+                    <ul class="values-list">
+                        <li>accessibility first</li>
+                        <li>experimentation over perfection</li>
+                        <li>learn by doing</li>
+                        <li>no gatekeeping</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products -->
+        <div class="section">
+            <h2 class="section-title">products</h2>
+            <div class="releases-grid">
+                <!-- mk-1 -->
+                <a href="mk-1.html" class="release-card">
+                    <div class="release-header">
+                        <h3 class="release-title">playground mk-1</h3>
+                        <span class="status-badge live">live</span>
+                    </div>
+                    <p class="release-description">web-based music creation. drums, synth, looper, mic input.</p>
+                    <div class="release-meta">
+                        <span class="release-tag">8-track sequencer</span>
+                        <span class="release-tag">4-slot looper</span>
+                        <span class="release-tag">synthesizer</span>
+                    </div>
+                </a>
+
+                <!-- mk-2 (placeholder) -->
+                <div class="release-card disabled">
+                    <div class="release-header">
+                        <h3 class="release-title">playground mk-2</h3>
+                        <span class="status-badge planned">planned</span>
+                    </div>
+                    <p class="release-description">[coming soon] / [in development]</p>
+                    <div class="release-meta">
+                        <span class="release-tag">notify me</span>
+                    </div>
+                </div>
+
+                <!-- mk-3 (placeholder) -->
+                <div class="release-card disabled">
+                    <div class="release-header">
+                        <h3 class="release-title">playground mk-3</h3>
+                        <span class="status-badge planned">planned</span>
+                    </div>
+                    <p class="release-description">[por definir]</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services -->
+        <div class="section">
+            <h2 class="section-title">services</h2>
+            <div class="releases-grid">
+                <!-- mk-air -->
+                <a href="#" class="release-card">
+                    <div class="release-header">
+                        <h3 class="release-title">playground mk-air</h3>
+                        <span class="status-badge live">live</span>
+                    </div>
+                    <p class="release-description">ephemeral live audio broadcasts. no recording, no archive.</p>
+                    <div class="release-meta">
+                        <span class="release-tag">streaming</span>
+                        <span class="release-tag">live only</span>
+                        <span class="release-tag">no archive</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Approach -->
+        <div class="section">
+            <div class="card card-full">
+                <div class="card-header">
+                    <div class="card-title">how we build</div>
+                </div>
+                <ul class="approach-list">
+                    <li>accessible interfaces</li>
+                    <li>minimal friction</li>
+                    <li>experimentation > perfection</li>
+                    <li>web-first, no installation</li>
+                    <li>grain texture aesthetic</li>
+                    <li>lowercase everywhere</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Nomenclature -->
+        <div class="section">
+            <div class="card card-full">
+                <div class="card-header">
+                    <div class="card-title">nomenclature</div>
+                </div>
+                <ul class="nomenclature-list">
+                    <li>mk-1 <span style="color: var(--text-tertiary);">music creation tool</span></li>
+                    <li>mk-air <span style="color: var(--text-tertiary);">ephemeral streaming</span></li>
+                    <li>mk-2 <span style="color: var(--text-tertiary);">[por definir]</span></li>
+                    <li>mk-3 <span style="color: var(--text-tertiary);">[por definir]</span></li>
+                    <li>...</li>
+                    <li>mk-∞ <span style="color: var(--text-tertiary);">the dream</span></li>
+                </ul>
+                <p class="nomenclature-note">
+                    cada "mk" es una iteración, un experimento. no hay versiones 2.0, hay nuevos instrumentos.
+                </p>
+            </div>
+        </div>
+
+        <!-- Support -->
+        <div class="section">
+            <div class="card card-full support-card">
+                <div class="card-header">
+                    <div class="card-title">support</div>
+                </div>
+                <pre>playground is free and open.
+if you find value, consider supporting:
+<a href="https://buymeacoffee.com/nbronzina" target="_blank">[buy me a coffee link]</a></pre>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <span class="version">mk-∞ v0.1</span>
+                <span class="separator">•</span>
+                <span>designed, coded & built by <a href="https://nicolasbronzina.com" target="_blank">nicolás bronzina</a></span>
+                <span class="separator">•</span>
+                <a href="https://buymeacoffee.com/nbronzina" target="_blank">support this project</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark-mode');
+        });
+
+        // Timestamp
+        function updateTimestamp() {
+            const now = new Date();
+            const date = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            const time = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('timestamp').textContent = `${date} — ${time}`;
+        }
+        
+        updateTimestamp();
+        setInterval(updateTimestamp, 1000);
+    </script>
+</body>
+</html>
