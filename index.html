@@ -36,10 +36,10 @@
     <div class="header">
         <div>
             <div class="brand">playground</div>
-            <div style="font-size: 0.7rem; color: var(--text-tertiary); font-weight: 400; margin-top: 0.3rem;" id="timestamp"></div>
+            <div class="header-timestamp" id="timestamp"></div>
         </div>
-        <div style="display: flex; gap: 0.5rem; position: relative; z-index: 2;">
-            <button id="themeToggle" style="background: none; border: 1px solid var(--border-primary); color: var(--text-primary); padding: 0.5rem 0.8rem; cursor: pointer; font-size: 0.7rem; font-weight: 500; text-transform: lowercase; letter-spacing: 0.05em; transition: all 0.15s ease;">
+        <div class="header-actions">
+            <button id="themeToggle" class="header-btn">
                 <span id="themeIcon">◐</span>
             </button>
         </div>
@@ -58,17 +58,12 @@
                 <div class="card-header">
                     <div class="card-title">what is playground?</div>
                 </div>
-                <pre>a series of experimental music tools.
-no manuals. no friction. just play.
-
-each release follows industrial design nomenclature:
-mk-1, mk-2, mk-3...
-
-if a beginner needs more than 5 seconds to understand it,
-it doesn't belong here.</pre>
+                <p class="about-intro">a series of experimental music tools. no manuals. no friction. just play.</p>
+                <p class="about-intro">each release follows industrial design nomenclature: mk-1, mk-2, mk-3...</p>
+                <p class="about-rule">if a beginner needs more than 5 seconds to understand it, it doesn't belong here.</p>
                 
-                <div style="margin-top: 1.5rem;">
-                    <strong style="font-size: 0.75rem; color: var(--text-primary);">values:</strong>
+                <div class="values-section">
+                    <strong class="values-title">values:</strong>
                     <ul class="values-list">
                         <li>accessibility first</li>
                         <li>experimentation over perfection</li>
@@ -155,15 +150,15 @@ it doesn't belong here.</pre>
                     <li>lowercase everywhere</li>
                 </ul>
                 
-                <div style="margin-top: 2.5rem;">
+                <div class="nomenclature-section">
                     <div class="card-title">nomenclature</div>
-                    <ul class="nomenclature-list" style="margin-top: 1rem;">
-                        <li>mk-1 <span style="color: var(--text-tertiary);">music creation tool</span></li>
-                        <li>mk-air <span style="color: var(--text-tertiary);">ephemeral streaming</span></li>
-                        <li>mk-2 <span style="color: var(--text-tertiary);">[por definir]</span></li>
-                        <li>mk-3 <span style="color: var(--text-tertiary);">[por definir]</span></li>
+                    <ul class="nomenclature-list">
+                        <li>mk-1 <span class="nomenclature-desc">music creation tool</span></li>
+                        <li>mk-air <span class="nomenclature-desc">ephemeral streaming</span></li>
+                        <li>mk-2 <span class="nomenclature-desc">[por definir]</span></li>
+                        <li>mk-3 <span class="nomenclature-desc">[por definir]</span></li>
                         <li>...</li>
-                        <li>mk-∞ <span style="color: var(--text-tertiary);">the dream</span></li>
+                        <li>mk-∞ <span class="nomenclature-desc">the dream</span></li>
                     </ul>
                     <p class="nomenclature-note">
                         cada "mk" es una iteración, un experimento. no hay versiones 2.0, hay nuevos instrumentos.
@@ -187,11 +182,9 @@ if you find value, consider supporting:
         <!-- Footer -->
         <div class="footer">
             <div class="footer-content">
-                <span class="version">mk-∞ v0.1</span>
+                <span class="version">pg</span>
                 <span class="separator">•</span>
                 <span>designed, coded & built by <a href="https://nicolasbronzina.com" target="_blank">nicolás bronzina</a></span>
-                <span class="separator">•</span>
-                <a href="https://buymeacoffee.com/nbronzina" target="_blank">support this project</a>
             </div>
         </div>
     </div>
