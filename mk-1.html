@@ -288,10 +288,9 @@
             </div>
         </div>
 
-        <!-- Loop + Vibe + FX/Tempo + Support (optimized grid) -->
-        <div class="workspace" style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: auto auto; gap: 1rem;">
-            <!-- Loop - spans 2 rows, column 1 -->
-            <div class="module" style="grid-column: 1; grid-row: 1 / 3;">
+        <!-- Loop + Vibe + FX/Tempo (REORDERED) -->
+        <div class="workspace">
+            <div class="module module-third">
                 <div class="module-header">
                     <div class="module-title">loop</div>
                     <div class="module-desc">record & layer up to 4 loops + mic input</div>
@@ -329,8 +328,7 @@
                 <button class="btn" id="initBtn" style="margin-top: 1rem;">start</button>
             </div>
 
-            <!-- Vibe - column 2, row 1 -->
-            <div class="module" style="grid-column: 2; grid-row: 1;">
+            <div class="module module-third">
                 <div class="module-header">
                     <div class="module-title">vibe</div>
                     <div class="module-desc">your music companion</div>
@@ -345,8 +343,7 @@
                 </div>
             </div>
 
-            <!-- FX + Tempo - column 3, row 1 -->
-            <div class="module" style="grid-column: 3; grid-row: 1;">
+            <div class="module module-third">
                 <div class="module-header">
                     <div class="module-title">fx + tempo</div>
                     <div class="module-desc">shape your sound</div>
@@ -380,9 +377,11 @@
                     <input type="range" id="filter" min="100" max="10000" value="10000">
                 </div>
             </div>
+        </div>
 
-            <!-- Support - spans columns 2-3, row 2 -->
-            <div class="module" style="grid-column: 2 / 4; grid-row: 2;">
+        <!-- Support -->
+        <div class="workspace">
+            <div class="module module-full">
                 <div class="module-header">
                     <div class="module-title">support</div>
                 </div>
