@@ -36,6 +36,12 @@
     --status-live: #00ff00;
     --status-planned: #999;
     --status-beta: #ff9500;
+    
+    /* Typography scale */
+    --letter-spacing-tight: 0.02em;
+    --letter-spacing-normal: 0.03em;
+    --letter-spacing-wide: 0.05em;
+    --letter-spacing-wider: 0.08em;
 }
 
 :root.dark-mode {
@@ -133,7 +139,7 @@ body::after {
 .brand {
     font-size: 1rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--letter-spacing-wide);
     text-transform: lowercase;
     position: relative;
     z-index: 2;
@@ -158,7 +164,7 @@ body::after {
 .hero h1 {
     font-size: 3rem;
     font-weight: 200;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--letter-spacing-tight);
     margin-bottom: 0.8rem;
 }
 
@@ -166,6 +172,7 @@ body::after {
     font-size: 0.85rem;
     color: var(--text-tertiary);
     font-weight: 300;
+    letter-spacing: var(--letter-spacing-normal);
     transition: all 0.3s ease;
 }
 
@@ -213,7 +220,7 @@ body::after {
 .card-title, .module-title {
     font-size: 0.7rem;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: var(--letter-spacing-wider);
     text-transform: lowercase;
     color: var(--text-tertiary);
 }
@@ -221,6 +228,7 @@ body::after {
 .card-desc, .module-desc {
     font-size: 0.65rem;
     font-weight: 400;
+    letter-spacing: var(--letter-spacing-normal);
     color: #bbb;
     margin-top: 0.3rem;
     line-height: 1.4;
@@ -237,7 +245,7 @@ body::after {
     font-size: 0.75rem;
     font-weight: 500;
     text-transform: lowercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--letter-spacing-wide);
     cursor: pointer;
     transition: all 0.15s ease;
     user-select: none;
@@ -272,7 +280,7 @@ body::after {
     font-size: 0.75rem;
     font-weight: 500;
     text-transform: lowercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--letter-spacing-wide);
     cursor: pointer;
     transition: all 0.15s ease;
 }
@@ -311,7 +319,7 @@ a:hover {
     font-size: 0.65rem;
     font-weight: 600;
     text-transform: lowercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--letter-spacing-wide);
     border-radius: 2px;
     border: 1px solid;
 }
@@ -341,6 +349,7 @@ a:hover {
     text-align: center;
     color: var(--text-tertiary);
     font-size: 0.7rem;
+    letter-spacing: var(--letter-spacing-normal);
     position: relative;
     z-index: 2;
 }
@@ -430,7 +439,7 @@ a:hover {
     font-size: 0.7rem;
     font-weight: 500;
     text-transform: lowercase;
-    letter-spacing: 0.08em;
+    letter-spacing: var(--letter-spacing-wider);
     color: var(--text-tertiary);
 }
 
@@ -443,7 +452,7 @@ a:hover {
     font-size: 0.7rem;
     font-weight: 500;
     text-transform: lowercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--letter-spacing-wide);
     transition: all 0.15s ease;
 }
 
