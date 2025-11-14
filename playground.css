@@ -223,7 +223,7 @@ html {
 
 /* === SUPPORT SECTION === */
 .support-card pre {
-    background: var(--bg-tertiary);
+    background: transparent;
     padding: 1.5rem;
     border-radius: 2px;
     font-size: 0.85rem;
