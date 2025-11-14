@@ -288,62 +288,23 @@
             </div>
         </div>
 
-        <!-- Loop + Vibe + FX/Tempo + Support (horizontal layout) -->
+        <!-- Vibe + FX/Tempo + Loop -->
         <div class="workspace">
-            <!-- Loop - full width horizontal -->
-            <div class="module module-full" style="margin-bottom: 1rem;">
+            <div class="module module-third">
                 <div class="module-header">
-                    <div class="module-title">loop</div>
-                    <div class="module-desc">record & layer up to 4 loops + mic input</div>
+                    <div class="module-title">vibe</div>
+                    <div class="module-desc">your music companion</div>
                 </div>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                    <div>
-                        <div class="btn-group" style="margin-bottom: 1rem;">
-                            <button class="btn-secondary slot-btn active" data-slot="A">A</button>
-                            <button class="btn-secondary slot-btn" data-slot="B">B</button>
-                            <button class="btn-secondary slot-btn" data-slot="C">C</button>
-                            <button class="btn-secondary slot-btn" data-slot="D">D</button>
-                        </div>
-                        
-                        <button class="btn-secondary" id="micBtn" style="margin-bottom: 1rem; width: 100%;">
-                            <span class="mic-indicator" id="micIndicator"></span>mic
-                        </button>
-                        
-                        <div style="text-align: center; margin-bottom: 1rem; min-height: 1.2rem;">
-                            <span style="font-size: 0.65rem; color: var(--text-tertiary);" id="slotInfo">slot A · empty</span>
-                        </div>
-                    </div>
-                    
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <button class="btn-secondary" id="recordBtn">rec manual</button>
-                        <button class="btn-secondary" id="overdubBtn">add layer</button>
-                        <button class="btn-secondary" id="playLoopBtn">play</button>
-                    </div>
-                    
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <button class="btn-secondary" id="playAllBtn">play all</button>
-                        <button class="btn-secondary" id="clearLoopBtn">clear</button>
-                        <button class="btn" id="downloadBtn" style="display: none;">download</button>
-                    </div>
-                    
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div class="control-group">
-                            <div class="control-label">
-                                <span>volume</span>
-                                <span class="control-value" id="masterVolVal">70%</span>
-                            </div>
-                            <input type="range" id="masterVol" min="0" max="100" value="70">
-                        </div>
-                        <button class="btn" id="initBtn">start</button>
-                    </div>
+                <div style="display: flex; align-items: center; justify-content: center; min-height: 280px;">
+                    <svg id="vibeCircle" width="200" height="200" viewBox="0 0 200 200" style="max-width: 100%; cursor: pointer;">
+                        <circle id="vibeCircleMain" cx="100" cy="100" r="80" fill="none" stroke="var(--text-primary)" stroke-width="2"/>
+                        <circle id="vibeEyeLeft" cx="75" cy="85" r="4" fill="var(--text-primary)"/>
+                        <circle id="vibeEyeRight" cx="125" cy="85" r="4" fill="var(--text-primary)"/>
+                        <path id="vibeMouth" d="M 70 115 Q 100 125 130 115" fill="none" stroke="var(--text-primary)" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
                 </div>
             </div>
-        </div>
 
-        <!-- FX+Tempo + Vibe + Support (3 equal columns - functional first) -->
-        <div class="workspace">
-            <!-- FX + Tempo -->
             <div class="module module-third">
                 <div class="module-header">
                     <div class="module-title">fx + tempo</div>
@@ -379,32 +340,42 @@
                 </div>
             </div>
 
-            <!-- Vibe -->
             <div class="module module-third">
                 <div class="module-header">
-                    <div class="module-title">vibe</div>
-                    <div class="module-desc">your music companion</div>
+                    <div class="module-title">loop</div>
+                    <div class="module-desc">record & layer up to 4 loops + mic input</div>
                 </div>
-                <div style="display: flex; align-items: center; justify-content: center; min-height: 200px;">
-                    <svg id="vibeCircle" width="150" height="150" viewBox="0 0 200 200" style="max-width: 100%; cursor: pointer;">
-                        <circle id="vibeCircleMain" cx="100" cy="100" r="80" fill="none" stroke="var(--text-primary)" stroke-width="2"/>
-                        <circle id="vibeEyeLeft" cx="75" cy="85" r="4" fill="var(--text-primary)"/>
-                        <circle id="vibeEyeRight" cx="125" cy="85" r="4" fill="var(--text-primary)"/>
-                        <path id="vibeMouth" d="M 70 115 Q 100 125 130 115" fill="none" stroke="var(--text-primary)" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
+                
+                <div class="btn-group" style="margin-bottom: 1rem;">
+                    <button class="btn-secondary slot-btn active" data-slot="A">A</button>
+                    <button class="btn-secondary slot-btn" data-slot="B">B</button>
+                    <button class="btn-secondary slot-btn" data-slot="C">C</button>
+                    <button class="btn-secondary slot-btn" data-slot="D">D</button>
                 </div>
-            </div>
-
-            <!-- Support -->
-            <div class="module module-third">
-                <div class="module-header">
-                    <div class="module-title">support</div>
+                
+                <button class="btn-secondary" id="micBtn" style="margin-bottom: 1rem;">
+                    <span class="mic-indicator" id="micIndicator"></span>mic
+                </button>
+                
+                <div style="text-align: center; margin-bottom: 1rem; min-height: 1.2rem;">
+                    <span style="font-size: 0.65rem; color: var(--text-tertiary);" id="slotInfo">slot A · empty</span>
                 </div>
-                <p style="margin-bottom: 0.8rem; font-size: 0.85rem;">playground is free and open.</p>
-                <p style="font-size: 0.85rem;">if you find value, consider supporting: 
-                    <a href="https://buymeacoffee.com/nbronzina" target="_blank" 
-                       style="border-bottom: 1px solid var(--text-primary);">buy me a coffee link</a>
-                </p>
+                
+                <button class="btn-secondary" id="recordBtn">rec manual</button>
+                <button class="btn-secondary" id="overdubBtn" style="margin-top: 0.5rem;">add layer</button>
+                <button class="btn-secondary" id="playLoopBtn" style="margin-top: 0.5rem;">play</button>
+                <button class="btn-secondary" id="playAllBtn" style="margin-top: 0.5rem;">play all</button>
+                <button class="btn-secondary" id="clearLoopBtn" style="margin-top: 0.5rem;">clear</button>
+                <button class="btn" id="downloadBtn" style="margin-top: 0.5rem; display: none;">download</button>
+                
+                <div class="control-group" style="margin-top: 1.5rem;">
+                    <div class="control-label">
+                        <span>volume</span>
+                        <span class="control-value" id="masterVolVal">70%</span>
+                    </div>
+                    <input type="range" id="masterVol" min="0" max="100" value="70">
+                </div>
+                <button class="btn" id="initBtn" style="margin-top: 1rem;">start</button>
             </div>
         </div>
 
@@ -414,6 +385,8 @@
                 <span class="version">mk-1 v0.1</span>
                 <span class="separator">•</span>
                 <span>designed, coded & built by <a href="https://nicolasbronzina.com" target="_blank">nicolás bronzina</a></span>
+                <span class="separator">•</span>
+                <a href="https://buymeacoffee.com/nbronzina" target="_blank">support this project</a>
             </div>
         </div>
     </div>
