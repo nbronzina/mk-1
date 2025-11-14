@@ -44,8 +44,8 @@ html {
 /* === HERO - MORE POWERFUL === */
 .hero {
     text-align: center;
-    margin-bottom: 4rem;
-    padding: 3rem 0 4rem;
+    margin-bottom: 2.5rem;
+    padding: 2rem 0 2.5rem;
 }
 
 .hero h1 {
@@ -278,8 +278,8 @@ html {
 
 @media (max-width: 768px) {
     .hero {
-        padding: 2rem 0 3rem;
-        margin-bottom: 3rem;
+        padding: 1.5rem 0 2rem;
+        margin-bottom: 2rem;
     }
 
     .hero h1 {
@@ -327,7 +327,7 @@ html {
 
 @media (max-width: 480px) {
     .hero {
-        padding: 1.5rem 0 2.5rem;
+        padding: 1rem 0 1.5rem;
     }
 
     .hero h1 {
