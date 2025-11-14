@@ -76,96 +76,83 @@
             </div>
         </div>
 
-        <!-- Tools -->
+        <!-- Tools & Spaces -->
         <div class="section" id="tools">
-            <h2 class="section-title">tools</h2>
-            <div class="releases-grid">
-                <!-- mk-1 -->
-                <a href="mk-1.html" class="release-card">
-                    <div class="release-header">
-                        <h3 class="release-title">playground mk-1</h3>
-                        <span class="status-badge live">live</span>
-                    </div>
-                    <p class="release-description">web-based music creation. drums, synth, looper, mic input.</p>
-                    <div class="release-meta">
-                        <span class="release-tag">8-track sequencer</span>
-                        <span class="release-tag">4-slot looper</span>
-                        <span class="release-tag">synthesizer</span>
-                    </div>
-                </a>
-
-                <!-- mk-2 (placeholder) -->
-                <div class="release-card disabled">
-                    <div class="release-header">
-                        <h3 class="release-title">playground mk-2</h3>
-                        <span class="status-badge planned">planned</span>
-                    </div>
-                    <p class="release-description">[coming soon] / [in development]</p>
-                    <div class="release-meta">
-                        <span class="release-tag">notify me</span>
-                    </div>
+            <h2 class="section-title">releases</h2>
+            <div class="two-column-grid">
+                <!-- Tools Column -->
+                <div class="column">
+                    <h3 class="column-title">tools</h3>
+                    <a href="mk-1.html" class="release-card">
+                        <div class="release-header">
+                            <h3 class="release-title">playground mk-1</h3>
+                            <span class="status-badge live">live</span>
+                        </div>
+                        <p class="release-description">web-based music creation. drums, synth, looper, mic input.</p>
+                        <div class="release-meta">
+                            <span class="release-tag">8-track sequencer</span>
+                            <span class="release-tag">4-slot looper</span>
+                            <span class="release-tag">synthesizer</span>
+                        </div>
+                    </a>
                 </div>
 
-                <!-- mk-3 (placeholder) -->
-                <div class="release-card disabled">
-                    <div class="release-header">
-                        <h3 class="release-title">playground mk-3</h3>
-                        <span class="status-badge planned">planned</span>
-                    </div>
-                    <p class="release-description">[por definir]</p>
+                <!-- Spaces Column -->
+                <div class="column">
+                    <h3 class="column-title">spaces</h3>
+                    <a href="https://mk-air.onrender.com/" class="release-card">
+                        <div class="release-header">
+                            <h3 class="release-title">playground mk-air</h3>
+                            <span class="status-badge live">live</span>
+                        </div>
+                        <p class="release-description">ephemeral live audio broadcasts. no recording, no archive.</p>
+                        <div class="release-meta">
+                            <span class="release-tag">streaming</span>
+                            <span class="release-tag">live only</span>
+                            <span class="release-tag">no archive</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- Spaces -->
-        <div class="section">
-            <h2 class="section-title">spaces</h2>
-            <div class="releases-grid">
-                <!-- mk-air -->
-                <a href="https://mk-air.onrender.com/" class="release-card">
-                    <div class="release-header">
-                        <h3 class="release-title">playground mk-air</h3>
-                        <span class="status-badge live">live</span>
-                    </div>
-                    <p class="release-description">ephemeral live audio broadcasts. no recording, no archive.</p>
-                    <div class="release-meta">
-                        <span class="release-tag">streaming</span>
-                        <span class="release-tag">live only</span>
-                        <span class="release-tag">no archive</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Approach + Nomenclature -->
+        <!-- Philosophy -->
         <div class="section">
             <h2 class="section-title">philosophy</h2>
-            <div class="card card-full">
-                <div class="card-header">
-                    <div class="card-title">how we build</div>
+            <div class="two-column-grid">
+                <!-- How we build -->
+                <div class="column">
+                    <div class="card card-philosophy">
+                        <div class="card-header">
+                            <div class="card-title">how we build</div>
+                        </div>
+                        <ul class="approach-list">
+                            <li>accessible interfaces</li>
+                            <li>minimal friction</li>
+                            <li>experimentation > perfection</li>
+                            <li>web-first, no installation</li>
+                            <li>grain texture aesthetic</li>
+                            <li>lowercase everywhere</li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="approach-list">
-                    <li>accessible interfaces</li>
-                    <li>minimal friction</li>
-                    <li>experimentation > perfection</li>
-                    <li>web-first, no installation</li>
-                    <li>grain texture aesthetic</li>
-                    <li>lowercase everywhere</li>
-                </ul>
-                
-                <div class="nomenclature-section">
-                    <div class="card-title">nomenclature</div>
-                    <ul class="nomenclature-list">
-                        <li>mk-1 <span class="nomenclature-desc">music creation tool</span></li>
-                        <li>mk-air <span class="nomenclature-desc">ephemeral streaming</span></li>
-                        <li>mk-2 <span class="nomenclature-desc">[por definir]</span></li>
-                        <li>mk-3 <span class="nomenclature-desc">[por definir]</span></li>
-                        <li>...</li>
-                        <li>mk-∞ <span class="nomenclature-desc">the dream</span></li>
-                    </ul>
-                    <p class="nomenclature-note">
-                        cada "mk" es una iteración, un experimento. no hay versiones 2.0, hay nuevos instrumentos.
-                    </p>
+
+                <!-- Nomenclature -->
+                <div class="column">
+                    <div class="card card-philosophy">
+                        <div class="card-header">
+                            <div class="card-title">nomenclature</div>
+                        </div>
+                        <ul class="nomenclature-list">
+                            <li>mk-1 <span class="nomenclature-desc">music creation tool</span></li>
+                            <li>mk-air <span class="nomenclature-desc">ephemeral streaming</span></li>
+                            <li>...</li>
+                            <li>mk-∞ <span class="nomenclature-desc">the dream</span></li>
+                        </ul>
+                        <p class="nomenclature-note">
+                            cada "mk" es una iteración, un experimento. no hay versiones 2.0, hay nuevos instrumentos.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
