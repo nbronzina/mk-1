@@ -3,27 +3,131 @@
    Landing page for playground releases
    ============================================ */
 
+/* === SMOOTH SCROLL === */
+html {
+    scroll-behavior: smooth;
+}
+
+/* === HEADER STYLES === */
+.header-timestamp {
+    font-size: 0.7rem;
+    color: var(--text-tertiary);
+    font-weight: 400;
+    margin-top: 0.3rem;
+}
+
+.header-actions {
+    display: flex;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.header-btn {
+    background: none;
+    border: 1px solid var(--border-primary);
+    color: var(--text-primary);
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    transition: all 0.15s ease;
+}
+
+.header-btn:hover {
+    background: var(--hover-primary);
+    border-color: var(--border-secondary);
+}
+
+/* === HERO - MORE POWERFUL === */
+.hero {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 3rem 0 4rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+}
+
+.hero-tagline {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    margin-bottom: 1.5rem;
+}
+
+.hero-description {
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+.hero-cta {
+    margin-top: 2rem;
+}
+
+.hero-btn {
+    display: inline-block;
+    width: auto;
+    min-width: 200px;
+    padding: 1rem 2rem;
+    text-decoration: none;
+}
+
+.hero-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 /* === ABOUT SECTION === */
 .about-card {
     margin-bottom: 2rem;
 }
 
-.about-card pre {
-    background: var(--bg-tertiary);
-    padding: 1.5rem;
-    border-radius: 2px;
+.about-intro {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+}
+
+.about-rule {
     font-size: 0.85rem;
-    line-height: 1.8;
-    overflow-x: auto;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+    line-height: 1.7;
+    color: var(--text-primary);
+    font-style: italic;
+    margin-top: 1.2rem;
+}
+
+.values-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-primary);
+}
+
+.values-title {
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 0.8rem;
 }
 
 /* === VALUES LIST === */
 .values-list {
     list-style: none;
     padding: 0;
-    margin-top: 1rem;
+    margin: 0;
 }
 
 .values-list li {
@@ -91,11 +195,12 @@
     outline-offset: 2px;
 }
 
+/* === DISABLED CARDS - MORE SUBTLE === */
 .release-card.disabled {
     cursor: not-allowed;
-    opacity: 0.5;
-    filter: grayscale(0.3);
-    position: relative;
+    opacity: 0.4;
+    padding: 1rem 1.5rem;
+    min-height: auto;
 }
 
 .release-card.disabled::before {
@@ -108,9 +213,9 @@
     background: repeating-linear-gradient(
         45deg,
         transparent,
-        transparent 10px,
-        rgba(0,0,0,0.02) 10px,
-        rgba(0,0,0,0.02) 20px
+        transparent 12px,
+        rgba(0,0,0,0.015) 12px,
+        rgba(0,0,0,0.015) 24px
     );
     z-index: 3;
     pointer-events: none;
@@ -120,6 +225,10 @@
     transform: none;
     box-shadow: none;
     border-color: var(--border-primary);
+}
+
+.release-card.disabled .release-description {
+    font-size: 0.75rem;
 }
 
 /* === RELEASE CARD HEADER === */
@@ -214,6 +323,10 @@
 }
 
 /* === NOMENCLATURE SECTION === */
+.nomenclature-section {
+    margin-top: 2.5rem;
+}
+
 .nomenclature-list {
     list-style: none;
     padding: 0;
@@ -235,6 +348,10 @@
     flex-shrink: 0;
 }
 
+.nomenclature-desc {
+    color: var(--text-tertiary);
+}
+
 .nomenclature-note {
     font-size: 0.8rem;
     color: var(--text-secondary);
@@ -242,7 +359,7 @@
     font-style: italic;
 }
 
-/* === SECTION SPACING === */
+/* === SECTION SPACING - UNIFIED === */
 .section {
     margin-bottom: 4rem;
 }
@@ -266,6 +383,28 @@
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
+    .hero {
+        padding: 2rem 0 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-tagline {
+        font-size: 0.9rem;
+    }
+
+    .hero-description {
+        font-size: 0.85rem;
+    }
+
+    .hero-btn {
+        min-width: 180px;
+        padding: 0.9rem 1.5rem;
+    }
+
     .releases-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -273,6 +412,10 @@
 
     .release-card {
         padding: 1rem;
+    }
+
+    .release-card.disabled {
+        padding: 0.8rem 1rem;
     }
 
     .release-title {
@@ -292,18 +435,42 @@
         margin-bottom: 1.5rem;
     }
 
-    .about-card pre {
-        font-size: 0.8rem;
-        padding: 1.2rem;
-    }
-
     .support-card pre {
         font-size: 0.8rem;
         padding: 1.2rem;
     }
+    
+    .about-intro {
+        font-size: 0.85rem;
+    }
+    
+    .about-rule {
+        font-size: 0.8rem;
+    }
 }
 
 @media (max-width: 480px) {
+    .hero {
+        padding: 1.5rem 0 2.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero-tagline {
+        font-size: 0.85rem;
+    }
+
+    .hero-description {
+        font-size: 0.8rem;
+    }
+
+    .hero-btn {
+        min-width: 160px;
+        padding: 0.8rem 1.2rem;
+    }
+
     .release-header {
         flex-direction: column;
         gap: 0.5rem;
@@ -311,6 +478,10 @@
 
     .release-card {
         padding: 0.8rem;
+    }
+    
+    .release-card.disabled {
+        padding: 0.7rem 0.8rem;
     }
 
     .release-title {
